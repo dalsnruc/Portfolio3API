@@ -1,0 +1,159 @@
+@WebApi_HostAddress = https://localhost:5002
+
+//USER
+###
+GET {{WebApi_HostAddress}}/api/users/paged?page=0&pageSize=2
+Authorization: Kat
+
+###
+GET {{WebApi_HostAddress}}/api/users/1
+Authorization: Kat
+
+###
+POST {{WebApi_HostAddress}}/api/users
+Content-Type: application/json
+Authorization: Kat
+{
+    "username": "TEST4",
+    "password": "TEST",
+    "email": "test@mail.com",
+    "birthday": "2000-01-01",
+    "phonenumber": "25123456"
+}
+
+###
+PUT {{WebApi_HostAddress}}/api/users/2
+Content-Type: application/json
+Authorization: Kat
+{
+    "username": "TESTER",
+    "password": "test",
+    "email": "test",
+    "birthday": "2000-01-01",
+    "phonenumber": "test"
+}
+
+###
+DELETE {{WebApi_HostAddress}}/api/users/TEST4
+Authorization: Kat
+
+
+
+###
+//TITLE
+GET {{WebApi_HostAddress}}/api/titles?page=10&pagesize=25
+
+###
+GET {{WebApi_HostAddress}}/api/titles/tt26693752
+Accept: application/json
+
+
+
+
+###
+//NAME
+GET {{WebApi_HostAddress}}/api/names
+Accept: application/json
+
+###
+GET {{WebApi_HostAddress}}/api/names/nm0000001
+Accept: application/json
+Authorization: Kat
+
+
+
+
+###
+//BOOKMARKNAME
+GET {{WebApi_HostAddress}}/api/bookmarknames/nm0000009
+Authorization: Kat
+
+###
+GET {{WebApi_HostAddress}}/api/bookmarknames
+Authorization: Kat
+
+###
+POST {{WebApi_HostAddress}}/api/bookmarknames
+Content-Type: application/json
+Authorization: Kat
+{
+    "nameid": "nm0000100"
+}
+
+###
+DELETE {{WebApi_HostAddress}}/api/bookmarknames/nm0000100
+Authorization: Kat
+
+
+###
+//BOOKMARKTITLE
+GET {{WebApi_HostAddress}}/api/bookmarktitles/tt20854604
+Authorization: Kat
+
+###
+GET {{WebApi_HostAddress}}/api/bookmarktitles
+Authorization: Kat
+
+###
+POST {{WebApi_HostAddress}}/api/bookmarktitles
+Content-Type: application/json
+Authorization: Kat
+{
+    "titleid": "tt26693752"
+}
+
+###
+DELETE {{WebApi_HostAddress}}/api/bookmarktitles/tt26693752
+Authorization: Kat
+
+###
+//USERRATING
+GET {{WebApi_HostAddress}}/api/userratings/tt21931780
+Authorization: Kat
+
+###
+GET {{WebApi_HostAddress}}/api/userratings
+Authorization: test3
+
+###
+POST {{WebApi_HostAddress}}/api/userratings
+Content-Type: application/json
+Authorization: test3
+{
+    "titleid": "tt21931780",
+    "rating": 8
+}
+
+###
+DELETE {{WebApi_HostAddress}}/api/userratings/tt20854604
+Authorization: Kat
+
+###
+PUT {{WebApi_HostAddress}}/api/userratings/tt21931780
+Content-Type: application/json
+Authorization: Kat
+{
+  "titleid": "",
+  "rating": 9
+}
+
+###
+//SEARCHES
+GET {{WebApi_HostAddress}}/api/searches/1
+Authorization: Kat
+
+###
+GET {{WebApi_HostAddress}}/api/searches
+Authorization: Kat
+
+###
+POST {{WebApi_HostAddress}}/api/searches
+Content-Type: application/json
+Authorization: Kat
+{
+    "content": "hej"
+}
+
+###
+DELETE {{WebApi_HostAddress}}/api/searches/4
+Authorization: Kat
