@@ -1,5 +1,8 @@
 using DataLayer;
 using Mapster;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +21,19 @@ builder.Services.AddSingleton<ISearchesDataService, SearchesDataService>();
 
 var secret = "pjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijo";
 
-builder.Services.AddAuthentication(JwtBearerDefaults.)
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(opt =>
+        opt.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
+            ClockSkew = TimeSpan.Zero
+        }
+
+
+    );
 
 
 
@@ -42,7 +57,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapControllers();
 

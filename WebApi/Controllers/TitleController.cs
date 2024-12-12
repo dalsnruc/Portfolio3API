@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models.NameModels;
 using WebApi.Models.TitleModels;
@@ -28,6 +29,7 @@ public class TitleController : BaseController
     }
 
     [HttpGet(Name = nameof(GetTitlesPaged))]
+    [Authorize]
     public IActionResult GetTitlesPaged(int page = 0, int pageSize = 10)
     {
         
