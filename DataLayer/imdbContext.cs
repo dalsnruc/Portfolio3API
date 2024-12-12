@@ -18,6 +18,7 @@ internal class imdbContext : DbContext
     public DbSet<BookmarkTitle> BookmarkTitles { get; set; }
     public DbSet<Searches> Searches { get; set; }
     public DbSet<UserRating> UserRatings { get; set; }
+    public DbSet<GlobalSearches> GlobalSearches { get; set; }
 
     // Configures the database connection and logging for this DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -110,6 +111,7 @@ internal class imdbContext : DbContext
         modelBuilder.Entity<Name>()
             .HasKey(n => n.NameId);
 
+
         //Searches 
         modelBuilder.Entity<Searches>().ToTable("searches");
         modelBuilder.Entity<Searches>().Property(x => x.SearchId).HasColumnName("search_id");
@@ -138,6 +140,11 @@ internal class imdbContext : DbContext
         modelBuilder.Entity<NameProfession>()
             .HasKey(np => new { np.NameId, np.ProfessionId });
 
+        //GlobalSearches
+        modelBuilder.Entity<GlobalSearches>().ToTable("global_searches");
+        modelBuilder.Entity<GlobalSearches>().Property(gs => gs.Id).HasColumnName("global_search_id");
+        modelBuilder.Entity<GlobalSearches>().Property(gs => gs.Content).HasColumnName("content");
+        modelBuilder.Entity<GlobalSearches>().Property(gs => gs.Count).HasColumnName("counter");
 
     }
 

@@ -83,12 +83,12 @@ public class SearchesController : BaseController
         {
             var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
             var user = _userdataservice.GetUser(username);
-            var search = _searchesdataservice.CreateSearch(user.Id, model.Content);
+            _searchesdataservice.SaveSearch(user.Id, model.Content);
 
             return Created("", new CreateSearchesModel
             {
                 UserId = user.Id,
-                Content = search.Content
+                Content = model.Content
             });
         }
         catch

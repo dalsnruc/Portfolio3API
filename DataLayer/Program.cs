@@ -28,7 +28,7 @@ var userratingdataservice = new UserRatingDataService();
 
 //Console.WriteLine(searchesdataservice.GetSearches(1, 0,1).FirstOrDefault().Content);
 //Console.WriteLine(searchesdataservice.GetSearch(1, 2).Content);
-//Console.WriteLine(searchesdataservice.CreateSearch(1, "Test"));
+searchesdataservice.SaveSearch(1, "Test");
 //Console.WriteLine(searchesdataservice.DeleteSearch(1, 3));
 
 //Console.WriteLine(userratingdataservice.GetUserRatings(1, 0, 1).FirstOrDefault().Title.OriginalTitle);
@@ -36,6 +36,9 @@ var userratingdataservice = new UserRatingDataService();
 //Console.WriteLine(userratingdataservice.CreateUserRating(4, "tt24657706", 7));
 //Console.WriteLine(userratingdataservice.DeleteUserRating(4, "tt24657706"));
 
+//Console.WriteLine();
+
+/*
 int testUserId = 1; // Replace with a valid user id
 UserRating testRating = new UserRating
 {
@@ -52,7 +55,7 @@ Console.WriteLine(result);
 
 
 
-
+*/
 
 
 
