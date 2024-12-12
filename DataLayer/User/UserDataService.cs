@@ -55,14 +55,9 @@ public class UserDataService : IUserDataService
             .FirstOrDefault(u => u.Id == id);
     }
 
-    public User CreateUser(int userid, string username, string password, string email, DateTime birthday, string phonenumber)
+    public User CreateUser(string username, string password, string email, DateTime birthday, string phonenumber)
     {
         var db = new imdbContext();
-
-        if (db.Users.FirstOrDefault(x => x.Id == userid) == null)
-        {
-            throw new ArgumentException("User not found");
-        }
 
         int id = db.Users.Max(x => x.Id) + 1;
 

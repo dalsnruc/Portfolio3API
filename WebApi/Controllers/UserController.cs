@@ -85,17 +85,11 @@ public class UserController : BaseController
     [HttpPost]
     public IActionResult CreateUser(CreateUserModel model)
     {
-        try
-        {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
-            var userL = _userdataservice.GetUser(username);
-            var user = _userdataservice.CreateUser(userL.Id, model.Username, model.Password, model.Email, model.Birthday, model.Phonenumber);
-            return CreatedAtRoute(nameof(GetUser), new { id = user.Id }, CreateUserModel(user));
-        }
-        catch
-        {
-            return Unauthorized();
-        }
+
+        var user = _userdataservice.CreateUser(model.Username, model.Password, model.Email, model.Birthday, model.Phonenumber);
+        return CreatedAtRoute(nameof(GetUser), new { id = user.Id }, CreateUserModel(user));
+
+
     }
 
     [HttpPut("{id}")]

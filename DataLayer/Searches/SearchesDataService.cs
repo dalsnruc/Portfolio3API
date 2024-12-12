@@ -83,5 +83,56 @@ namespace DataLayer
             var db = new imdbContext();
             return db.Searches.Count(bn => bn.UserId == userId);
         }
+
+        public void SaveSearch(int user_id, string content)
+        {
+            try
+            {
+                using var db = new imdbContext();
+
+                //Saves to the Searches table
+                var search = new Searches
+                {
+                    UserId = user_id,
+                    Content = content,
+                    Date = DateTime.UtcNow // Converts to UTC
+                };
+
+                db.Searches.Add(search);
+
+                //Check if search content (string) exists in Global_searches
+                var globalSearch = db.GlobalSearches.FirstOrDefault(gs => gs.Content == content);
+
+                if (globalSearch != null)
+                {
+                    //If exist add +1 to the count
+                    globalSearch.Count++;
+                    db.GlobalSearches.Update(globalSearch);
+
+                }
+                else
+                {
+                    //If not exists, add content to Global_Searches with count 1
+                    var newGlobalSearch = new GlobalSearches
+                    {
+                        Content = content,
+                        Count = 1
+                    };
+                    db.GlobalSearches.Add(newGlobalSearch);
+
+
+                }
+
+                //Save all changes
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}\n{ex.StackTrace}");
+                throw; // Re-throw the exception for debugging
+            }
+
+
+        }
     }
 }

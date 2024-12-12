@@ -12,9 +12,8 @@ Authorization: Kat
 ###
 POST {{WebApi_HostAddress}}/api/users
 Content-Type: application/json
-Authorization: Kat
 {
-    "username": "TEST4",
+    "username": "TEST",
     "password": "TEST",
     "email": "test@mail.com",
     "birthday": "2000-01-01",
@@ -22,7 +21,7 @@ Authorization: Kat
 }
 
 ###
-PUT {{WebApi_HostAddress}}/api/users/2
+PUT {{WebApi_HostAddress}}/api/users/1
 Content-Type: application/json
 Authorization: Kat
 {
