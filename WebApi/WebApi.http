@@ -1,77 +1,84 @@
 @WebApi_HostAddress = https://localhost:5002
 
 //USER
-###
-GET {{WebApi_HostAddress}}/api/users/paged?page=0&pageSize=2
+### GET USERS - I DONT THINK WE SHOULD USE THIS
+GET {{WebApi_HostAddress}}/api/users/paged?page=0&pageSize=3
 Authorization: Kat
 
-###
+### GET A SINGLE USER BY ID
 GET {{WebApi_HostAddress}}/api/users/1
 Authorization: Kat
 
-###
+### CREATE USER
 POST {{WebApi_HostAddress}}/api/users
 Content-Type: application/json
 {
-    "username": "TEST",
+    "username": "NEWUSER",
     "password": "TEST",
     "email": "test@mail.com",
     "birthday": "2000-01-01",
     "phonenumber": "25123456"
 }
 
-###
-PUT {{WebApi_HostAddress}}/api/users/2
+### - UPDATE USER - THE LOGGED IN USER CAN UPDATE EVERYTHING EXCEPT USERNAME
+PUT {{WebApi_HostAddress}}/api/users/
 Content-Type: application/json
-Authorization: TEST4
+Authorization: Kat
 {
-    "username": "Hej",
-    "password": "test",
-    "email": "test",
-    "birthday": "2000-01-01",
-    "phonenumber": "test"
+    "username": "",
+    "password": "123456",
+    "email": "Kat.com",
+    "birthday": "1998-01-01",
+    "phonenumber": "87654321"
 }
 
-###
-DELETE {{WebApi_HostAddress}}/api/users/TEST4
+
+
+### - DELETE USER
+DELETE {{WebApi_HostAddress}}/api/users/NEWUSER
 Authorization: Kat
 
 
-
-###
 //TITLE
+### - GET TITLES PAGED
 GET {{WebApi_HostAddress}}/api/titles?page=10&pagesize=25
 
-###
+### - GET TITLES PAGED DEFAULT PAGING
+GET {{WebApi_HostAddress}}/api/titles
+
+### - GET SINGLE TITLE
 GET {{WebApi_HostAddress}}/api/titles/tt26693752
 Accept: application/json
 
 
 
-
-###
 //NAME
+### - GET NAMES PAGED 
+GET {{WebApi_HostAddress}}/api/names?page=10&pagesize=25
+Accept: application/json
+
+### - GET NAMES PAGED DEFAULT PAGING
 GET {{WebApi_HostAddress}}/api/names
 Accept: application/json
 
-###
+
+### - GET SINGLE NAME
 GET {{WebApi_HostAddress}}/api/names/nm0000001
 Accept: application/json
 Authorization: Kat
 
 
 
-
-###
 //BOOKMARKNAME
-GET {{WebApi_HostAddress}}/api/bookmarknames/nm0000009
+### - GET SINGLE BOOKMARK FROM THE LOGGED IN USER - DONT THINK WE ARE GONNA USE THIS ONE
+GET {{WebApi_HostAddress}}/api/bookmarknames/nm0000005
 Authorization: Kat
 
-###
+### - GET PAGED BOOKMARKS OF LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/bookmarknames
 Authorization: Kat
 
-###
+### - CREATE BOOKMARK
 POST {{WebApi_HostAddress}}/api/bookmarknames
 Content-Type: application/json
 Authorization: Kat
@@ -79,21 +86,20 @@ Authorization: Kat
     "nameid": "nm0000100"
 }
 
-###
+### - DELETE BOOKMARK
 DELETE {{WebApi_HostAddress}}/api/bookmarknames/nm0000100
 Authorization: Kat
 
-
-###
 //BOOKMARKTITLE
+### - GET SINGLE BOOKMARK FROM THE LOGGED IN USER - DONT THINK WE ARE GONNA USE THIS ONE
 GET {{WebApi_HostAddress}}/api/bookmarktitles/tt20854604
 Authorization: Kat
 
-###
+### - GET PAGED BOOKMARKS OF LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/bookmarktitles
 Authorization: Kat
 
-###
+### - CREATE BOOKMARK
 POST {{WebApi_HostAddress}}/api/bookmarktitles
 Content-Type: application/json
 Authorization: Kat
@@ -101,33 +107,33 @@ Authorization: Kat
     "titleid": "tt26693752"
 }
 
-###
+### - DELETE BOOKMARK
 DELETE {{WebApi_HostAddress}}/api/bookmarktitles/tt26693752
 Authorization: Kat
 
-###
-//USERRATING
-GET {{WebApi_HostAddress}}/api/userratings/tt21931780
+//USERRATING 
+### - GET SINGLE RATING FROM THE LOGGED IN USER - DONT THINK WE ARE GONNA USE THIS ONE
+GET {{WebApi_HostAddress}}/api/userratings/tt0104988
 Authorization: Kat
 
-###
+### - GET PAGED RATINGS OF LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/userratings
-Authorization: test3
+Authorization: Kat
 
-###
+### - CREATE RATING
 POST {{WebApi_HostAddress}}/api/userratings
 Content-Type: application/json
-Authorization: test3
+Authorization: Kat
 {
     "titleid": "tt21931780",
     "rating": 8
 }
 
-###
-DELETE {{WebApi_HostAddress}}/api/userratings/tt20854604
+### - DELETE RATING
+DELETE {{WebApi_HostAddress}}/api/userratings/tt21931780
 Authorization: Kat
 
-###
+### - UPDATE RATING
 PUT {{WebApi_HostAddress}}/api/userratings/tt21931780
 Content-Type: application/json
 Authorization: Kat
@@ -136,16 +142,16 @@ Authorization: Kat
   "rating": 9
 }
 
-###
 //SEARCHES
+### - GET SINGLE SEARCH BY LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/searches/1
 Authorization: Kat
 
-###
+### - GET ALL SEARCHES BY LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/searches
 Authorization: Kat
 
-###
+### - CREATE SEARCH
 POST {{WebApi_HostAddress}}/api/searches
 Content-Type: application/json
 Authorization: Kat
@@ -153,6 +159,6 @@ Authorization: Kat
     "content": "hej"
 }
 
-###
-DELETE {{WebApi_HostAddress}}/api/searches/4
+### - DELETE SEARCH
+DELETE {{WebApi_HostAddress}}/api/searches/8
 Authorization: Kat

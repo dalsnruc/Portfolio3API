@@ -81,10 +81,10 @@ public class UserDataService : IUserDataService
         return user;
     }
 
-    public bool UpdateUser(string username, string password, string email, DateTime birthday, string phonenumber)
+    public bool UpdateUser(string loggedinusername, string password, string email, DateTime birthday, string phonenumber)
     {
         var db = new imdbContext();
-        var user = db.Users.FirstOrDefault(u => u.Username == username);
+        var user = db.Users.FirstOrDefault(u => u.Username == loggedinusername);
 
        
         DateTime utcBirthday = birthday.Kind == DateTimeKind.Utc
@@ -104,11 +104,11 @@ public class UserDataService : IUserDataService
         return db.SaveChanges() > 0;
     }
 
-    public bool UpdateUser(int userid, User user)
+    public bool UpdateUser(string username, User user)
     {
         var db = new imdbContext();
 
-        if (db.Users.FirstOrDefault(x => x.Id == userid) == null)
+        if (db.Users.FirstOrDefault(x => x.Username == username) == null)
         {
             throw new ArgumentException("User not found");
         }

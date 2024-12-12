@@ -92,36 +92,47 @@ public class UserController : BaseController
 
     }
 
-    [HttpPut("{id}")]
-    public IActionResult UpdateUser(int id, CreateUserModel model)
+
+    [HttpPut]
+    public IActionResult UpdateUser(CreateUserModel model)
     {
         try
         {
             var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
-            var userL = _userdataservice.GetUser(username);
-
-            var user = _userdataservice.GetUser(userL.Id, id);
+            var user = _userdataservice.GetUser(username);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            user.Username = model.Username;
             user.Password = model.Password;
             user.Email = model.Email;
             user.Birthday = model.Birthday;
             user.Phonenumber = model.Phonenumber;
 
-            _userdataservice.UpdateUser(userL.Id, user);
+            bool updated = _userdataservice.UpdateUser(
+                user.Username,
+                user.Password,
+                user.Email,
+                user.Birthday,
+                user.Phonenumber
+            );
 
-            return Ok(CreateUserModel(user));
+            if (updated)
+            {
+                return Ok(CreateUserModel(user));
+            }
+
+            return BadRequest("Error");
         }
         catch
         {
             return Unauthorized();
         }
     }
+
+
 
     [HttpDelete("{username}")]
     public IActionResult DeleteUser(string username)

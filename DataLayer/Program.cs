@@ -53,7 +53,7 @@ Console.WriteLine(result);
 */
 
 string testUsername = "TEST4";
-string testPassword = "newPassword123";
+string testPassword = "newPassword";
 string testEmail = "testuser@example.com";
 DateTime testBirthday = new DateTime(1995, 5, 15); // Replace with desired birthday
 string testPhonenumber = "1234567890";
