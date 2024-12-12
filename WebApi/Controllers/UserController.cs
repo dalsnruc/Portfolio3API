@@ -1,9 +1,13 @@
 ﻿using DataLayer;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using WebApi.Models.TitleModels;
 using WebApi.Models.UserModels;
+using WebApi.Services;
 
 namespace WebApi.Controllers;
 
@@ -14,14 +18,17 @@ public class UserController : BaseController
 {
     IUserDataService _userdataservice;
     private readonly LinkGenerator _linkGenerator;
+    private readonly Hashing _hashing;
 
     public UserController(
         IUserDataService userDataService,
+        Hashing hashing,
         LinkGenerator linkGenerator)
         : base(linkGenerator)
     {
         _userdataservice = userDataService;
         _linkGenerator = linkGenerator;
+        _hashing = hashing;
     }
 
     [HttpGet]
@@ -86,13 +93,63 @@ public class UserController : BaseController
     public IActionResult CreateUser(CreateUserModel model)
     {
 
-        var user = _userdataservice.CreateUser(model.Username, model.Password, model.Email, model.Birthday, model.Phonenumber);
-        return CreatedAtRoute(nameof(GetUser), new { id = user.Id }, CreateUserModel(user));
+        if(_userdataservice.GetUser(model.Username)!= null)
+        {
+            return BadRequest();
+        }
+
+        if (string.IsNullOrEmpty(model.Password))
+        {
+            return BadRequest();
+        }
+
+        (var hashedPwd, var salt) = _hashing.Hash(model.Password);
+
+        var user = _userdataservice.CreateUser(model.Username, hashedPwd, model.Email, model.Birthday, model.Phonenumber, salt);
+        //return CreatedAtRoute(nameof(GetUser), new { id = user.Id }, CreateUserModel(user));
+        return Ok();
 
 
     }
+    
+    [HttpPut]
+    public IActionResult Login(LogInUserModel model)
+    {
+        var user = _userdataservice.GetUser(model.Username);
 
+        if(user == null)
+        {
+            return BadRequest();
+        }
 
+        if(!_hashing.Verify(model.Password, user.Password, user.Salt))
+        {
+            return BadRequest();
+        }
+
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, user.Username)
+        };
+
+        var secret = "pjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijo";
+        var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(secret));
+
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+        var token = new JwtSecurityToken(
+            claims: claims,
+            expires: DateTime.Now.AddSeconds(45),
+            signingCredentials: creds
+            );
+
+        var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+        return Ok(new {username = user.Username, token = jwt});
+    }
+
+    /*
+    
     [HttpPut]
     public IActionResult UpdateUser(CreateUserModel model)
     {
@@ -132,7 +189,7 @@ public class UserController : BaseController
         }
     }
 
-
+    */
 
     [HttpDelete("{username}")]
     public IActionResult DeleteUser(string username)

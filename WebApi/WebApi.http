@@ -13,30 +13,36 @@ Authorization: Kat
 POST {{WebApi_HostAddress}}/api/users
 Content-Type: application/json
 {
-    "username": "NEWUSER",
-    "password": "TEST",
+    "username": "TESTER",
+    "password": "12352f",
     "email": "test@mail.com",
     "birthday": "2000-01-01",
     "phonenumber": "25123456"
 }
 
-### - UPDATE USER - THE LOGGED IN USER CAN UPDATE EVERYTHING EXCEPT USERNAME
-PUT {{WebApi_HostAddress}}/api/users/
+### UPDATE USER
+POST {{WebApi_HostAddress}}/api/users
 Content-Type: application/json
-Authorization: Kat
 {
-    "username": "",
-    "password": "123456",
-    "email": "Kat.com",
-    "birthday": "1998-01-01",
-    "phonenumber": "87654321"
+    "username": "TESTER",
+    "password": "12352f",
+    "email": "test@mail.com",
+    "birthday": "2000-01-01",
+    "phonenumber": "25123456"
 }
 
-
+### - LOG in
+PUT {{WebApi_HostAddress}}/api/users/
+Content-Type: application/json
+//Authorization: Kat
+{
+    "username": "TESTER",
+    "password": "12352f"
+}
 
 ### - DELETE USER
 DELETE {{WebApi_HostAddress}}/api/users/NEWUSER
-Authorization: Kat
+Authorization: NEWUSER
 
 
 //TITLE
@@ -65,7 +71,6 @@ Accept: application/json
 ### - GET SINGLE NAME
 GET {{WebApi_HostAddress}}/api/names/nm0000001
 Accept: application/json
-Authorization: Kat
 
 
 

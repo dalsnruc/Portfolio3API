@@ -10,10 +10,13 @@ public class User
     public string Email { get; set; }
 
     public DateTime Birthday { get; set; }
-    public string Phonenumber { get; set; } 
+    public string Phonenumber { get; set; }
+    public string Salt { get; set; }
 
     public IList<UserRating> UserRating { get; set; }
     public IList<BookmarkName> BookmarkName { get; set;}
     public IList<BookmarkTitle> BookmarkTitle { get; set; }
     public IList<Searches> Searches { get; set; }
 }
+
+

@@ -36,7 +36,7 @@ var userratingdataservice = new UserRatingDataService();
 //Console.WriteLine(userratingdataservice.CreateUserRating(4, "tt24657706", 7));
 //Console.WriteLine(userratingdataservice.DeleteUserRating(4, "tt24657706"));
 
-//Console.WriteLine();
+Console.WriteLine(userdataservice.CreateUser("FirstWithSalt", "pwd", "salt@gmail.com", new DateTime(1995, 5, 15), "12345678", "123"));
 
 /*
 int testUserId = 1; // Replace with a valid user id
@@ -51,7 +51,7 @@ UserRating testRating = new UserRating
 bool result = userratingdataservice.UpdateUserRating(testUserId, testRating);
 Console.WriteLine(result);
 */
-
+/*
 string testUsername = "TEST4";
 string testPassword = "newPassword";
 string testEmail = "testuser@example.com";
@@ -74,7 +74,7 @@ bool result = userdataservice.UpdateUser(
 Console.WriteLine($"Update result: {result}");
 
 
-
+*/
 
 
 static void PrintUsers(IUserDataService userdataService)

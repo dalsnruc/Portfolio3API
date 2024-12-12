@@ -8,7 +8,7 @@ public interface IUserDataService
     User? GetUser(string username);
     User? GetUser(int userid, int id);
 
-    User CreateUser(string username, string password, string email, DateTime birthday, string phonenumber);
+    User CreateUser(string username, string password, string email, DateTime birthday, string phonenumber, string salt);
     bool UpdateUser(string username, string password, string email, DateTime birthday, string phonenumber);
     bool UpdateUser(string username, User user);
     bool DeleteUser(int userid, string username);

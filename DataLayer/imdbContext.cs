@@ -53,6 +53,7 @@ internal class imdbContext : DbContext
         modelBuilder.Entity<User>().Property(x => x.Email).HasColumnName("email");
         modelBuilder.Entity<User>().Property(x => x.Birthday).HasColumnName("birthday");
         modelBuilder.Entity<User>().Property(x => x.Phonenumber).HasColumnName("phonenumber");
+        modelBuilder.Entity<User>().Property(x => x.Salt).HasColumnName("salt");
 
         //Genres
         modelBuilder.Entity<Genre>().ToTable("genres");

@@ -55,7 +55,7 @@ public class UserDataService : IUserDataService
             .FirstOrDefault(u => u.Id == id);
     }
 
-    public User CreateUser(string username, string password, string email, DateTime birthday, string phonenumber)
+    public User CreateUser(string username, string password, string email, DateTime birthday, string phonenumber, string salt)
     {
         var db = new imdbContext();
 
@@ -73,7 +73,8 @@ public class UserDataService : IUserDataService
             Password = password,
             Email = email,
             Birthday = utcBirthday,
-            Phonenumber = phonenumber
+            Phonenumber = phonenumber,
+            Salt = salt
         };
 
         db.Users.Add(user);
