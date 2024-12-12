@@ -98,7 +98,7 @@ public class UserDataService : IUserDataService
 
         user.Password = password;
         user.Email = email;
-        user.Birthday = birthday;
+        user.Birthday = utcBirthday;
         user.Phonenumber = phonenumber;
 
         return db.SaveChanges() > 0;

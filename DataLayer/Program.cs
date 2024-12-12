@@ -28,7 +28,7 @@ var userratingdataservice = new UserRatingDataService();
 
 //Console.WriteLine(searchesdataservice.GetSearches(1, 0,1).FirstOrDefault().Content);
 //Console.WriteLine(searchesdataservice.GetSearch(1, 2).Content);
-searchesdataservice.SaveSearch(1, "Test");
+//searchesdataservice.SaveSearch(1, "Test");
 //Console.WriteLine(searchesdataservice.DeleteSearch(1, 3));
 
 //Console.WriteLine(userratingdataservice.GetUserRatings(1, 0, 1).FirstOrDefault().Title.OriginalTitle);
@@ -50,12 +50,29 @@ UserRating testRating = new UserRating
 
 bool result = userratingdataservice.UpdateUserRating(testUserId, testRating);
 Console.WriteLine(result);
-
-
-
-
-
 */
+
+string testUsername = "TEST4";
+string testPassword = "newPassword123";
+string testEmail = "testuser@example.com";
+DateTime testBirthday = new DateTime(1995, 5, 15); // Replace with desired birthday
+string testPhonenumber = "1234567890";
+
+// Create an instance of your service or class containing the UpdateUser method
+
+
+// Call the UpdateUser method
+bool result = userdataservice.UpdateUser(
+    testUsername,
+    testPassword,
+    testEmail,
+    testBirthday,
+    testPhonenumber
+);
+
+// Output the result
+Console.WriteLine($"Update result: {result}");
+
 
 
 
