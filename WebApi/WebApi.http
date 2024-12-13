@@ -2,46 +2,46 @@
 
 //USER
 ### GET USERS - I DONT THINK WE SHOULD USE THIS
-GET {{WebApi_HostAddress}}/api/users/paged?page=0&pageSize=3
+GET {{WebApi_HostAddress}}/api/users/paged?
 Authorization: Kat
 
-### GET A SINGLE USER BY ID
-GET {{WebApi_HostAddress}}/api/users/1
-Authorization: Kat
+### GET LOGGED IN USER
+GET {{WebApi_HostAddress}}/api/users
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg0NDM4fQ.h_tty-DuMTkfIU5p0ZEI7oWiy7sL8C-E03w0zDg8h6WQopPmVsI0bR0ozLZNscg1ZutMnDaLXxybXSKnVKVKYw
 
 ### CREATE USER
 POST {{WebApi_HostAddress}}/api/users
 Content-Type: application/json
 {
-    "username": "TESTER",
-    "password": "12352f",
-    "email": "test@mail.com",
-    "birthday": "2000-01-01",
+    "username": "liakat",
+    "password": "Lia123",
+    "email": "liakat@gmail.com",
+    "birthday": "1998-07-16",
     "phonenumber": "25123456"
 }
 
 ### UPDATE USER
 PUT {{WebApi_HostAddress}}/api/users/update
 Content-Type: application/json
-Authorization: TESTER
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg0NDM4fQ.h_tty-DuMTkfIU5p0ZEI7oWiy7sL8C-E03w0zDg8h6WQopPmVsI0bR0ozLZNscg1ZutMnDaLXxybXSKnVKVKYw
 
 {
-    "email": "test@mail.com",
+    "email": "lia@gmail2.com",
     "birthday": "1998-01-01",
     "phonenumber": "25123456"
 }
 
-### - LOG in
+### - LOG IN
 PUT {{WebApi_HostAddress}}/api/users/login
 Content-Type: application/json
 {
-    "username": "TESTER",
-    "password": "12352f"
+    "username": "liakat",
+    "password": "Lia123"
 }
 
 ### - DELETE USER
-DELETE {{WebApi_HostAddress}}/api/users/NEWUSER
-Authorization: NEWUSER
+DELETE {{WebApi_HostAddress}}/api/users
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg0OTY2fQ.C6PQea9DVAFYfUVzfMOZNFaKnDCYekRsGM6SmCrGNhqNKyD6wbIWDAyVb8GAY5NX2xbJVNey936CxW3rlqvgbg
 
 
 //TITLE

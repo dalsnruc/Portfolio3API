@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -34,6 +35,7 @@ public class UserController : BaseController
         _hashing = hashing;
     }
 
+    /*
     [HttpGet]
     public IActionResult GetUsers()
     {
@@ -68,21 +70,22 @@ public class UserController : BaseController
             return Unauthorized();
         }
     }
+    */
 
-    [HttpGet("{id}", Name = nameof(GetUser))]
-    public IActionResult GetUser(int id)
+    [HttpGet(Name = nameof(GetUser))]
+    [Authorize]
+    public IActionResult GetUser()
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
-            var getuser = _userdataservice.GetUser(user.Id, id);
 
-            if (getuser == null)
+            if (user == null)
             {
                 return NotFound();
             }
-            var model = CreateUserModel(getuser);
+            var model = CreateUserModel(user);
 
             return Ok(model);
         }
@@ -152,12 +155,15 @@ public class UserController : BaseController
     }
     
     [HttpPut("update", Name = nameof(UpdateUser))]
+    [Authorize]
     public IActionResult UpdateUser(UpdateUserModel model)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
+
 
             if (user == null)
             {
@@ -190,15 +196,16 @@ public class UserController : BaseController
 
     
 
-    [HttpDelete("{username}")]
-    public IActionResult DeleteUser(string username)
+    [HttpDelete]
+    [Authorize]
+    public IActionResult DeleteUser()
     {
         try
         {
-            var usernameL = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
-            var userL = _userdataservice.GetUser(usernameL);
+            var username = User.Identity?.Name;
+            var user = _userdataservice.GetUser(username);
 
-            var result = _userdataservice.DeleteUser(userL.Id, username);
+            var result = _userdataservice.DeleteUser(username);
 
             if (result)
             {

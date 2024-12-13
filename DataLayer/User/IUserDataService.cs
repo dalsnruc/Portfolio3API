@@ -11,7 +11,7 @@ public interface IUserDataService
     User CreateUser(string username, string password, string email, DateTime birthday, string phonenumber, string salt);
     bool UpdateUser(string username, string email, DateTime birthday, string phonenumber);
     bool UpdateUser(string username, User user);
-    bool DeleteUser(int userid, string username);
+    bool DeleteUser(string username);
 
     int NumberOfUsers();
     

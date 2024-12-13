@@ -120,14 +120,9 @@ public class UserDataService : IUserDataService
     }
 
 
-    public bool DeleteUser(int userid, string username)
+    public bool DeleteUser(string username)
     {
         var db = new imdbContext();
-
-        if (db.Users.FirstOrDefault(x => x.Id == userid) == null)
-        {
-            throw new ArgumentException("User not found");
-        }
 
         var user = db.Users.FirstOrDefault(u => u.Username == username);
 
