@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models.BookmarkTitleModels;
 
@@ -27,11 +28,12 @@ public class BookmarkTitleController : BaseController
 
 
     [HttpGet(Name = nameof(GetBookmarkTitles))]
+    [Authorize]
     public IActionResult GetBookmarkTitles(int page = 0, int pageSize = 2)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
 
             var bookmarktitles = _bookmarktitledataservice
@@ -54,11 +56,12 @@ public class BookmarkTitleController : BaseController
 
 
     [HttpGet("{id}", Name = nameof(GetBookmarkTitle))]
+    [Authorize]
     public IActionResult GetBookmarkTitle(string id)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
             var bookmarktitle = _bookmarktitledataservice.GetBookmarkTitle(user.Id, id);
 
@@ -77,11 +80,12 @@ public class BookmarkTitleController : BaseController
     }
 
     [HttpPost]
+    [Authorize]
     public IActionResult CreateBookmarkTitle(CreateBookmarkTitleModel model)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
             var bookmarktitle = _bookmarktitledataservice.CreateBookmarkTitle(user.Id, model.TitleId);
 
@@ -99,11 +103,12 @@ public class BookmarkTitleController : BaseController
 
 
     [HttpDelete("{id}")]
+    [Authorize]
     public IActionResult DeleteBookmarkTitle(string id)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
 
             var result = _bookmarktitledataservice.DeleteBookmarkTitle(user.Id, id);

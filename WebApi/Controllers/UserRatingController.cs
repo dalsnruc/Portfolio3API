@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models.UserRatingModels;
 
@@ -27,11 +28,12 @@ public class UserRatingController : BaseController
 
 
     [HttpGet(Name = nameof(GetUserRatings))]
+    [Authorize]
     public IActionResult GetUserRatings(int page = 0, int pageSize = 10)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
 
             var userratings = _userratingdataservice
@@ -54,11 +56,12 @@ public class UserRatingController : BaseController
 
 
     [HttpGet("{id}", Name = nameof(GetUserRating))]
+    [Authorize]
     public IActionResult GetUserRating(string id)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
             var userrating = _userratingdataservice.GetUserRating(user.Id, id);
 
@@ -78,11 +81,12 @@ public class UserRatingController : BaseController
 
 
     [HttpPost]
+    [Authorize]
     public IActionResult CreateUserRating(CreateUserRatingModel model)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
             var userrating = _userratingdataservice.CreateUserRating(user.Id, model.TitleId, model.Rating);
 
@@ -100,26 +104,26 @@ public class UserRatingController : BaseController
     }
 
     [HttpPut("{titleid}")]
-    public IActionResult UpdateUserRating(string titleid, CreateUserRatingModel model)
+    [Authorize]
+    public IActionResult UpdateUserRating(string titleid, UpdateUserRatingModel model)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
-            var userL = _userdataservice.GetUser(username);
+            var username = User.Identity?.Name;
+            var user = _userdataservice.GetUser(username);
 
-            var userrating = _userratingdataservice.GetUserRating(userL.Id, titleid);
+            var userrating = _userratingdataservice.GetUserRating(user.Id, titleid);
 
             if (userrating == null)
             {
                 return NotFound();
             }
 
-            userrating.UserId = userL.Id;
             userrating.TitleId = titleid;
             userrating.Rating = model.Rating;
             userrating.Date = DateTime.UtcNow;
 
-            _userratingdataservice.UpdateUserRating(userL.Id, userrating);
+            _userratingdataservice.UpdateUserRating(user.Id, userrating);
 
             return Ok(CreateUserRatingModel(userrating));
         }
@@ -130,11 +134,12 @@ public class UserRatingController : BaseController
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public IActionResult DeleteUserRating(string id)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
 
             var result = _userratingdataservice.DeleteUserRating(user.Id, id);

@@ -1,6 +1,6 @@
 @WebApi_HostAddress = https://localhost:5002
 
-//USER
+
 ### GET USERS - I DONT THINK WE SHOULD USE THIS
 GET {{WebApi_HostAddress}}/api/users/paged?
 Authorization: Kat
@@ -44,7 +44,7 @@ DELETE {{WebApi_HostAddress}}/api/users
 Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg0OTY2fQ.C6PQea9DVAFYfUVzfMOZNFaKnDCYekRsGM6SmCrGNhqNKyD6wbIWDAyVb8GAY5NX2xbJVNey936CxW3rlqvgbg
 
 
-//TITLE
+
 ### - GET TITLES PAGED
 GET {{WebApi_HostAddress}}/api/titles?page=10&pagesize=25
 
@@ -58,7 +58,7 @@ Accept: application/json
 
 
 
-//NAME
+
 ### - GET NAMES PAGED 
 GET {{WebApi_HostAddress}}/api/names?page=10&pagesize=25
 Accept: application/json
@@ -74,61 +74,61 @@ Accept: application/json
 
 
 
-//BOOKMARKNAME
+
 ### - GET SINGLE BOOKMARK FROM THE LOGGED IN USER - DONT THINK WE ARE GONNA USE THIS ONE
 GET {{WebApi_HostAddress}}/api/bookmarknames/nm0000005
 Authorization: Kat
 
 ### - GET PAGED BOOKMARKS OF LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/bookmarknames
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg1ODIwfQ.EW4eCNc_FfqKxC8JtCH0Tvy5oM0KGY0MTQYYLDsf4NImhE2_UU8zntyk1gt_0RXA61wPri4dPC_5JCB5z9aA6A
 
 ### - CREATE BOOKMARK
 POST {{WebApi_HostAddress}}/api/bookmarknames
 Content-Type: application/json
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg1ODIwfQ.EW4eCNc_FfqKxC8JtCH0Tvy5oM0KGY0MTQYYLDsf4NImhE2_UU8zntyk1gt_0RXA61wPri4dPC_5JCB5z9aA6A
 {
     "nameid": "nm0000100"
 }
 
 ### - DELETE BOOKMARK
 DELETE {{WebApi_HostAddress}}/api/bookmarknames/nm0000100
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg1ODIwfQ.EW4eCNc_FfqKxC8JtCH0Tvy5oM0KGY0MTQYYLDsf4NImhE2_UU8zntyk1gt_0RXA61wPri4dPC_5JCB5z9aA6A
 
-//BOOKMARKTITLE
+
 ### - GET SINGLE BOOKMARK FROM THE LOGGED IN USER - DONT THINK WE ARE GONNA USE THIS ONE
 GET {{WebApi_HostAddress}}/api/bookmarktitles/tt20854604
 Authorization: Kat
 
 ### - GET PAGED BOOKMARKS OF LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/bookmarktitles
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg2MjI1fQ.eBZLDPc6T0XSA7rZ0kit6frIhfu_VXJ6vqJjZD2uOweh3ExmtbbJmOX8tbvY5nqUbIFYYwHTY7IFaP1aPLb3mw
 
 ### - CREATE BOOKMARK
 POST {{WebApi_HostAddress}}/api/bookmarktitles
 Content-Type: application/json
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg2MjI1fQ.eBZLDPc6T0XSA7rZ0kit6frIhfu_VXJ6vqJjZD2uOweh3ExmtbbJmOX8tbvY5nqUbIFYYwHTY7IFaP1aPLb3mw
 {
     "titleid": "tt26693752"
 }
 
 ### - DELETE BOOKMARK
 DELETE {{WebApi_HostAddress}}/api/bookmarktitles/tt26693752
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg2MjI1fQ.eBZLDPc6T0XSA7rZ0kit6frIhfu_VXJ6vqJjZD2uOweh3ExmtbbJmOX8tbvY5nqUbIFYYwHTY7IFaP1aPLb3mw
 
-//USERRATING 
+
 ### - GET SINGLE RATING FROM THE LOGGED IN USER - DONT THINK WE ARE GONNA USE THIS ONE
 GET {{WebApi_HostAddress}}/api/userratings/tt0104988
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg3MTEwfQ.fAcGom1a6Oo0V6_IsC_2yT-53vaV-Bm6q_zBD9h2KCg2w1iLaAzd_Xd8NbytRICuXnhsvi25akwEkURb8kJpAQ
 
 ### - GET PAGED RATINGS OF LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/userratings
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg3MTEwfQ.fAcGom1a6Oo0V6_IsC_2yT-53vaV-Bm6q_zBD9h2KCg2w1iLaAzd_Xd8NbytRICuXnhsvi25akwEkURb8kJpAQ
 
 ### - CREATE RATING
 POST {{WebApi_HostAddress}}/api/userratings
 Content-Type: application/json
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg3MTEwfQ.fAcGom1a6Oo0V6_IsC_2yT-53vaV-Bm6q_zBD9h2KCg2w1iLaAzd_Xd8NbytRICuXnhsvi25akwEkURb8kJpAQ
 {
     "titleid": "tt21931780",
     "rating": 8
@@ -136,34 +136,33 @@ Authorization: Kat
 
 ### - DELETE RATING
 DELETE {{WebApi_HostAddress}}/api/userratings/tt21931780
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg4NTA2fQ.oIDgLbg8EQU7cFw8n1Vzi96NUt3V77SsmRz2-QbV_n59fA2_QhxhPcjCA6J-JGOvzcAyTyR51v77hA0VIVcSsw
 
 ### - UPDATE RATING
 PUT {{WebApi_HostAddress}}/api/userratings/tt21931780
 Content-Type: application/json
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg4NTA2fQ.oIDgLbg8EQU7cFw8n1Vzi96NUt3V77SsmRz2-QbV_n59fA2_QhxhPcjCA6J-JGOvzcAyTyR51v77hA0VIVcSsw
 {
-  "titleid": "",
-  "rating": 9
+  "rating": 8
 }
 
-//SEARCHES
+
 ### - GET SINGLE SEARCH BY LOGGED IN USER
-GET {{WebApi_HostAddress}}/api/searches/1
-Authorization: Kat
+GET {{WebApi_HostAddress}}/api/searches/11
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg2NjIyfQ.G9nthsbJjS04yH0kRAqumjf79asikOlVKOFAUDvToOdnQMkJgNZX2mgOaMYma1Al_NNQ2iZB5nR-C_sdDiU6Xw
 
 ### - GET ALL SEARCHES BY LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/searches
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg2NjIyfQ.G9nthsbJjS04yH0kRAqumjf79asikOlVKOFAUDvToOdnQMkJgNZX2mgOaMYma1Al_NNQ2iZB5nR-C_sdDiU6Xw
 
 ### - CREATE SEARCH
 POST {{WebApi_HostAddress}}/api/searches
 Content-Type: application/json
-Authorization: Kat
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg2NjIyfQ.G9nthsbJjS04yH0kRAqumjf79asikOlVKOFAUDvToOdnQMkJgNZX2mgOaMYma1Al_NNQ2iZB5nR-C_sdDiU6Xw
 {
     "content": "hej"
 }
 
 ### - DELETE SEARCH
-DELETE {{WebApi_HostAddress}}/api/searches/8
-Authorization: Kat
+DELETE {{WebApi_HostAddress}}/api/searches/10
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg2NjIyfQ.G9nthsbJjS04yH0kRAqumjf79asikOlVKOFAUDvToOdnQMkJgNZX2mgOaMYma1Al_NNQ2iZB5nR-C_sdDiU6Xw

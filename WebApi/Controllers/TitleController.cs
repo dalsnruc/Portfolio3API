@@ -29,7 +29,6 @@ public class TitleController : BaseController
     }
 
     [HttpGet(Name = nameof(GetTitlesPaged))]
-    [Authorize]
     public IActionResult GetTitlesPaged(int page = 0, int pageSize = 10)
     {
         

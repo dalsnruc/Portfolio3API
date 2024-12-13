@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models.BookmarkNameModels;
 
@@ -27,11 +28,12 @@ public class BookmarkNameController : BaseController
 
     
     [HttpGet(Name = nameof(GetBookmarkNames))]
+    [Authorize]
     public IActionResult GetBookmarkNames(int page = 0, int pageSize = 10)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
 
             var bookmarknames = _bookmarknamedataservice
@@ -58,7 +60,7 @@ public class BookmarkNameController : BaseController
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
             var bookmarkname = _bookmarknamedataservice.GetBookmarkName(user.Id, id);
 
@@ -77,11 +79,12 @@ public class BookmarkNameController : BaseController
     }
 
     [HttpPost]
+    [Authorize]
     public IActionResult CreateBookmarkName(CreateBookmarkNameModel model)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
             var bookmarkname = _bookmarknamedataservice.CreateBookmarkName(user.Id,model.NameId);
 
@@ -99,11 +102,12 @@ public class BookmarkNameController : BaseController
 
 
     [HttpDelete("{id}")]
+    [Authorize]
     public IActionResult DeleteBookmarkName(string id)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
 
             var result = _bookmarknamedataservice.DeleteBookmarkName(user.Id, id);

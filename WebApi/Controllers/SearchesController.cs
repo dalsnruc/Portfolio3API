@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models.SearchesModels;
 
@@ -27,11 +28,12 @@ public class SearchesController : BaseController
 
 
     [HttpGet(Name = nameof(GetSearches))]
+    [Authorize]
     public IActionResult GetSearches(int page = 0, int pageSize = 10)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
 
             var searches = _searchesdataservice
@@ -54,11 +56,12 @@ public class SearchesController : BaseController
 
     
     [HttpGet("{id}", Name = nameof(GetSearch))]
+    [Authorize]
     public IActionResult GetSearch(int id)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
             var search = _searchesdataservice.GetSearch(user.Id, id);
 
@@ -77,11 +80,12 @@ public class SearchesController : BaseController
     }
 
     [HttpPost]
+    [Authorize]
     public IActionResult CreateSearch(CreateSearchesModel model)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
             _searchesdataservice.SaveSearch(user.Id, model.Content);
 
@@ -101,11 +105,12 @@ public class SearchesController : BaseController
 
 
     [HttpDelete("{id}")]
+    [Authorize]
     public IActionResult DeleteSearch(int id)
     {
         try
         {
-            var username = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
 
             var result = _searchesdataservice.DeleteSearch(user.Id, id);
