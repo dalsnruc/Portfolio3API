@@ -7,15 +7,16 @@ Authorization: Kat
 
 ### GET LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/users
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg0NDM4fQ.h_tty-DuMTkfIU5p0ZEI7oWiy7sL8C-E03w0zDg8h6WQopPmVsI0bR0ozLZNscg1ZutMnDaLXxybXSKnVKVKYw
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmljbGFzIiwiZXhwIjoxNzM0MDk2MTczfQ.O3otQEE7Ks9pH_j98QkTT__pEx24AT2uJFU3kE6LIhjp3bSefrptuy_DFY2IufEp0s8PeXg6lR2tcLjMk0bJZg
+
 
 ### CREATE USER
 POST {{WebApi_HostAddress}}/api/users
 Content-Type: application/json
 {
-    "username": "liakat",
-    "password": "Lia123",
-    "email": "liakat@gmail.com",
+    "username": "Niclas",
+    "password": "123",
+    "email": "Nic@gmail.com",
     "birthday": "1998-07-16",
     "phonenumber": "25123456"
 }
@@ -35,8 +36,8 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 PUT {{WebApi_HostAddress}}/api/users/login
 Content-Type: application/json
 {
-    "username": "liakat",
-    "password": "Lia123"
+    "username": "Niclas",
+    "password": "123"
 }
 
 ### - DELETE USER
