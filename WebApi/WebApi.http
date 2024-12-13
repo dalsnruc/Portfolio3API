@@ -14,20 +14,20 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 POST {{WebApi_HostAddress}}/api/users
 Content-Type: application/json
 {
-    "username": "Niclas",
+    "username": "Akash",
     "password": "123",
-    "email": "Nic@gmail.com",
-    "birthday": "1998-07-16",
+    "email": "Akash@gmail.com",
+    "birthday": "1998-06-04",
     "phonenumber": "25123456"
 }
 
 ### UPDATE USER
 PUT {{WebApi_HostAddress}}/api/users/update
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg0NDM4fQ.h_tty-DuMTkfIU5p0ZEI7oWiy7sL8C-E03w0zDg8h6WQopPmVsI0bR0ozLZNscg1ZutMnDaLXxybXSKnVKVKYw
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmljbGFzIiwiZXhwIjoxNzM0MTAxMTQzfQ.nlPnAsJeCHacfKw9tlEQziTxrivCCj_3KiFhrJLQy6VYNZgWGbVrVWJuli5gv2XV2um1EDldY0v4jnLwNoEFkQ
 
 {
-    "email": "lia@gmail2.com",
+    "email": "TESTESTEEST@gmail.com",
     "birthday": "1998-01-01",
     "phonenumber": "25123456"
 }
@@ -36,7 +36,7 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 PUT {{WebApi_HostAddress}}/api/users/login
 Content-Type: application/json
 {
-    "username": "Niclas",
+    "username": "Akash",
     "password": "123"
 }
 
@@ -70,7 +70,7 @@ Accept: application/json
 
 
 ### - GET SINGLE NAME
-GET {{WebApi_HostAddress}}/api/names/nm0000001
+GET {{WebApi_HostAddress}}/api/names/nm0000035
 Accept: application/json
 
 
@@ -82,14 +82,14 @@ Authorization: Kat
 
 ### - GET PAGED BOOKMARKS OF LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/bookmarknames
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg1ODIwfQ.EW4eCNc_FfqKxC8JtCH0Tvy5oM0KGY0MTQYYLDsf4NImhE2_UU8zntyk1gt_0RXA61wPri4dPC_5JCB5z9aA6A
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxMDE2Mjh9.0U4mcMU9rdUiCdlKS2_v6-t31ftQORXyWDUPLCxb_MV967v0m0qoV40SkHYqOu2YJ3kY4GWW80G53U4y1EmOAg
 
 ### - CREATE BOOKMARK
 POST {{WebApi_HostAddress}}/api/bookmarknames
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg1ODIwfQ.EW4eCNc_FfqKxC8JtCH0Tvy5oM0KGY0MTQYYLDsf4NImhE2_UU8zntyk1gt_0RXA61wPri4dPC_5JCB5z9aA6A
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxMDE2Mjh9.0U4mcMU9rdUiCdlKS2_v6-t31ftQORXyWDUPLCxb_MV967v0m0qoV40SkHYqOu2YJ3kY4GWW80G53U4y1EmOAg
 {
-    "nameid": "nm0000100"
+    "nameid": "nm0000114"
 }
 
 ### - DELETE BOOKMARK
@@ -119,17 +119,17 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 
 
 ### - GET SINGLE RATING FROM THE LOGGED IN USER - DONT THINK WE ARE GONNA USE THIS ONE
-GET {{WebApi_HostAddress}}/api/userratings/tt0104988
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg3MTEwfQ.fAcGom1a6Oo0V6_IsC_2yT-53vaV-Bm6q_zBD9h2KCg2w1iLaAzd_Xd8NbytRICuXnhsvi25akwEkURb8kJpAQ
+GET {{WebApi_HostAddress}}/api/userratings/tt21931780
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxMDE2Mjh9.0U4mcMU9rdUiCdlKS2_v6-t31ftQORXyWDUPLCxb_MV967v0m0qoV40SkHYqOu2YJ3kY4GWW80G53U4y1EmOAg
 
 ### - GET PAGED RATINGS OF LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/userratings
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg3MTEwfQ.fAcGom1a6Oo0V6_IsC_2yT-53vaV-Bm6q_zBD9h2KCg2w1iLaAzd_Xd8NbytRICuXnhsvi25akwEkURb8kJpAQ
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxMDE2Mjh9.0U4mcMU9rdUiCdlKS2_v6-t31ftQORXyWDUPLCxb_MV967v0m0qoV40SkHYqOu2YJ3kY4GWW80G53U4y1EmOAg
 
 ### - CREATE RATING
 POST {{WebApi_HostAddress}}/api/userratings
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg3MTEwfQ.fAcGom1a6Oo0V6_IsC_2yT-53vaV-Bm6q_zBD9h2KCg2w1iLaAzd_Xd8NbytRICuXnhsvi25akwEkURb8kJpAQ
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxMDE2Mjh9.0U4mcMU9rdUiCdlKS2_v6-t31ftQORXyWDUPLCxb_MV967v0m0qoV40SkHYqOu2YJ3kY4GWW80G53U4y1EmOAg
 {
     "titleid": "tt21931780",
     "rating": 8
