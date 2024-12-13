@@ -19,7 +19,7 @@ builder.Services.AddSingleton<IBookmarkTitleDataService, BookmarkTitleDataServic
 builder.Services.AddSingleton<IUserRatingDataService, UserRatingDataService>();
 builder.Services.AddSingleton<ISearchesDataService, SearchesDataService>();
 
-var secret = "pjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijo";
+var secret = builder.Configuration.GetSection("Auth:Secret").Value;
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>

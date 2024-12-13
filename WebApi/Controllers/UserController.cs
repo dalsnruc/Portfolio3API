@@ -17,16 +17,19 @@ namespace WebApi.Controllers;
 public class UserController : BaseController
 {
     IUserDataService _userdataservice;
+    private readonly IConfiguration _configuration;
     private readonly LinkGenerator _linkGenerator;
     private readonly Hashing _hashing;
 
     public UserController(
         IUserDataService userDataService,
+        IConfiguration configuration,
         Hashing hashing,
         LinkGenerator linkGenerator)
         : base(linkGenerator)
     {
         _userdataservice = userDataService;
+        _configuration = configuration;
         _linkGenerator = linkGenerator;
         _hashing = hashing;
     }
@@ -112,7 +115,7 @@ public class UserController : BaseController
 
     }
     
-    [HttpPut]
+    [HttpPut("login", Name = nameof(Login))]
     public IActionResult Login(LogInUserModel model)
     {
         var user = _userdataservice.GetUser(model.Username);
@@ -132,14 +135,14 @@ public class UserController : BaseController
             new Claim(ClaimTypes.Name, user.Username)
         };
 
-        var secret = "pjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijopjoivyjfukghijo";
+        var secret = _configuration.GetSection("Auth:Secret").Value;
         var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(secret));
 
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
         var token = new JwtSecurityToken(
             claims: claims,
-            expires: DateTime.Now.AddSeconds(45),
+            expires: DateTime.Now.AddMinutes(5),
             signingCredentials: creds
             );
 
@@ -147,11 +150,9 @@ public class UserController : BaseController
 
         return Ok(new {username = user.Username, token = jwt});
     }
-
-    /*
     
-    [HttpPut]
-    public IActionResult UpdateUser(CreateUserModel model)
+    [HttpPut("update", Name = nameof(UpdateUser))]
+    public IActionResult UpdateUser(UpdateUserModel model)
     {
         try
         {
@@ -163,14 +164,12 @@ public class UserController : BaseController
                 return NotFound();
             }
 
-            user.Password = model.Password;
             user.Email = model.Email;
             user.Birthday = model.Birthday;
             user.Phonenumber = model.Phonenumber;
 
             bool updated = _userdataservice.UpdateUser(
                 user.Username,
-                user.Password,
                 user.Email,
                 user.Birthday,
                 user.Phonenumber
@@ -189,7 +188,7 @@ public class UserController : BaseController
         }
     }
 
-    */
+    
 
     [HttpDelete("{username}")]
     public IActionResult DeleteUser(string username)

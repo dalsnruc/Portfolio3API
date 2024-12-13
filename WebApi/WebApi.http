@@ -21,20 +21,19 @@ Content-Type: application/json
 }
 
 ### UPDATE USER
-POST {{WebApi_HostAddress}}/api/users
+PUT {{WebApi_HostAddress}}/api/users/update
 Content-Type: application/json
+Authorization: TESTER
+
 {
-    "username": "TESTER",
-    "password": "12352f",
     "email": "test@mail.com",
-    "birthday": "2000-01-01",
+    "birthday": "1998-01-01",
     "phonenumber": "25123456"
 }
 
 ### - LOG in
-PUT {{WebApi_HostAddress}}/api/users/
+PUT {{WebApi_HostAddress}}/api/users/login
 Content-Type: application/json
-//Authorization: Kat
 {
     "username": "TESTER",
     "password": "12352f"
@@ -51,11 +50,11 @@ GET {{WebApi_HostAddress}}/api/titles?page=10&pagesize=25
 
 ### - GET TITLES PAGED DEFAULT PAGING
 GET {{WebApi_HostAddress}}/api/titles
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVEVTVEVSIiwiZXhwIjoxNzM0MDc4MDY0fQ.axsiOOy97jOxq8I1uwg5UgkmjjdspBCoqZvmIZMYeIMcTaNZdMVfkRHuH5pTVUdJJr8edRd9rEINKpohgCOE6A
 
 ### - GET SINGLE TITLE
 GET {{WebApi_HostAddress}}/api/titles/tt26693752
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVEVTVEVSIiwiZXhwIjoxNzM0MDM4MDE1fQ.gFnkLrDDQgvPc9YIATEGfT21QiAmKmDDIoVoEr2ga3xVaQpCfIpxMEliPGtTKdzVef1mb84p40RQwetMS6qWOw
 
 
 

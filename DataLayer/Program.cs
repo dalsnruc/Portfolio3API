@@ -36,7 +36,8 @@ var userratingdataservice = new UserRatingDataService();
 //Console.WriteLine(userratingdataservice.CreateUserRating(4, "tt24657706", 7));
 //Console.WriteLine(userratingdataservice.DeleteUserRating(4, "tt24657706"));
 
-Console.WriteLine(userdataservice.CreateUser("FirstWithSalt", "pwd", "salt@gmail.com", new DateTime(1995, 5, 15), "12345678", "123"));
+//Console.WriteLine(userdataservice.CreateUser("FirstWithSalt", "pwd", "salt@gmail.com", new DateTime(1995, 5, 15), "12345678", "123"));
+Console.WriteLine(userdataservice.UpdateUser("TESTER", "nymail@gmail.com", new DateTime(1995, 5, 15), "12345678"));
 
 /*
 int testUserId = 1; // Replace with a valid user id

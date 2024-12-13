@@ -82,7 +82,7 @@ public class UserDataService : IUserDataService
         return user;
     }
 
-    public bool UpdateUser(string loggedinusername, string password, string email, DateTime birthday, string phonenumber)
+    public bool UpdateUser(string loggedinusername, string email, DateTime birthday, string phonenumber)
     {
         var db = new imdbContext();
         var user = db.Users.FirstOrDefault(u => u.Username == loggedinusername);
@@ -97,7 +97,6 @@ public class UserDataService : IUserDataService
             return false;
         }
 
-        user.Password = password;
         user.Email = email;
         user.Birthday = utcBirthday;
         user.Phonenumber = phonenumber;
