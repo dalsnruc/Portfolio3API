@@ -31,7 +31,15 @@ public class UserDataService : IUserDataService
     public User? GetUser(string username)
     {
         var db = new imdbContext();
-        return db.Users.FirstOrDefault(u => u.Username == username);
+        return db.Users
+            .Include(u => u.UserRating)
+            .ThenInclude(ur => ur.Title)
+            .Include(u => u.BookmarkName)
+            .ThenInclude(bn => bn.Name)
+            .Include(u => u.BookmarkTitle)
+            .ThenInclude(bt => bt.Title)
+            .Include(u => u.Searches)
+            .FirstOrDefault(u => u.Username == username);
     }
 
     public User? GetUser(int userid, int id)

@@ -1,13 +1,10 @@
 @WebApi_HostAddress = https://localhost:5002
 
 
-### GET USERS - I DONT THINK WE SHOULD USE THIS
-GET {{WebApi_HostAddress}}/api/users/paged?
-Authorization: Kat
 
 ### GET LOGGED IN USER
 GET {{WebApi_HostAddress}}/api/users
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmljbGFzIiwiZXhwIjoxNzM0MDk2MTczfQ.O3otQEE7Ks9pH_j98QkTT__pEx24AT2uJFU3kE6LIhjp3bSefrptuy_DFY2IufEp0s8PeXg6lR2tcLjMk0bJZg
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxNzE3MjN9.wgZf5qfkWJnHQ6REETqhiPGBYmOT4KIThsmXrZSYlNlqQesWS8MIDf0KYRIoQpAHsnywNEkt1EaR85tnpDrzMg
 
 
 ### CREATE USER
@@ -52,10 +49,6 @@ GET {{WebApi_HostAddress}}/api/titles/movies/
 ### - GET TVSERIES PAGED
 GET {{WebApi_HostAddress}}/api/titles/tvseries
 
-### - GET TITLES PAGED DEFAULT PAGING
-GET {{WebApi_HostAddress}}/api/titles
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVEVTVEVSIiwiZXhwIjoxNzM0MDc4MDY0fQ.axsiOOy97jOxq8I1uwg5UgkmjjdspBCoqZvmIZMYeIMcTaNZdMVfkRHuH5pTVUdJJr8edRd9rEINKpohgCOE6A
-
 ### - GET SINGLE TITLE
 GET {{WebApi_HostAddress}}/api/titles/tt26693752
 Accept: application/json
@@ -90,9 +83,9 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 ### - CREATE BOOKMARK
 POST {{WebApi_HostAddress}}/api/bookmarknames
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxMDE2Mjh9.0U4mcMU9rdUiCdlKS2_v6-t31ftQORXyWDUPLCxb_MV967v0m0qoV40SkHYqOu2YJ3kY4GWW80G53U4y1EmOAg
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxNzE3MjN9.wgZf5qfkWJnHQ6REETqhiPGBYmOT4KIThsmXrZSYlNlqQesWS8MIDf0KYRIoQpAHsnywNEkt1EaR85tnpDrzMg
 {
-    "nameid": "nm0000114"
+    "nameid": "nm0000115"
 }
 
 ### - DELETE BOOKMARK
@@ -162,7 +155,7 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 ### - CREATE SEARCH
 POST {{WebApi_HostAddress}}/api/searches
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxMTEzNDF9.6Hcxv7T2duRkhz-sZDMxYjqimaN8w_TPd-Xuuf-KRuSr7emplH591diHalQrzaBTHj9G920uRFOtC290JLu80Q
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxNzE3MjN9.wgZf5qfkWJnHQ6REETqhiPGBYmOT4KIThsmXrZSYlNlqQesWS8MIDf0KYRIoQpAHsnywNEkt1EaR85tnpDrzMg
 {
     "content": "helloworld"
 }
