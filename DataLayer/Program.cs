@@ -13,7 +13,7 @@ var userratingdataservice = new UserRatingDataService();
 
 //Console.WriteLine(namedataservice.GetName("nm0000035").KnownForTitles.FirstOrDefault().Title.PrimaryTitle);
 //Console.WriteLine(namedataservice.GetName("nm0000035").PrimaryName);
-//Console.WriteLine(titledataservice.GetTitle("tt26693752").TitleType);
+Console.WriteLine(titledataservice.GetTitles(1, 10).FirstOrDefault().TitleGenre.FirstOrDefault().GenreId);
 //Console.WriteLine(genredataservice.GetAllGenres().FirstOrDefault().Name);
 
 //Console.WriteLine(bookmarknamedataservice.GetBookmarkName(1, "nm0000005").Name.PrimaryName);
@@ -37,7 +37,7 @@ var userratingdataservice = new UserRatingDataService();
 //Console.WriteLine(userratingdataservice.DeleteUserRating(4, "tt24657706"));
 
 //Console.WriteLine(userdataservice.CreateUser("FirstWithSalt", "pwd", "salt@gmail.com", new DateTime(1995, 5, 15), "12345678", "123"));
-Console.WriteLine(userdataservice.UpdateUser("TESTER", "nymail@gmail.com", new DateTime(1995, 5, 15), "12345678"));
+//Console.WriteLine(userdataservice.UpdateUser("TESTER", "nymail@gmail.com", new DateTime(1995, 5, 15), "12345678"));
 
 /*
 int testUserId = 1; // Replace with a valid user id

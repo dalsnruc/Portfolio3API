@@ -28,7 +28,7 @@ public class TitleController : BaseController
 
     }
 
-    [HttpGet(Name = nameof(GetTitlesPaged))]
+    [HttpGet("movies", Name = nameof(GetTitlesPaged))]
     public IActionResult GetTitlesPaged(int page = 0, int pageSize = 10)
     {
         
@@ -48,15 +48,36 @@ public class TitleController : BaseController
 
     }
 
+    [HttpGet("tvseries", Name = nameof(GetTvSeriesPaged))]
+    public IActionResult GetTvSeriesPaged(int page = 0, int pageSize = 10)
+    {
+
+        var titles = _titledataservice
+            .GetTvSeries(page, pageSize)
+            .Select(CreateAllTitlesModel);
+
+        var numberOfItems = _titledataservice.NumberOfTitles();
+        object result = CreatePaging(
+            nameof(GetTvSeriesPaged),
+            page,
+            pageSize,
+            numberOfItems,
+            titles);
+        return Ok(result);
+
+
+    }
+
     /*
     [HttpGet]
     public IActionResult GetTitles(int userid)
     {
         var titles = _titledataservice
-            .GetTitles(userid)
+            .GetTitles()
             .Select(CreateTitleModel);
         return Ok(titles);
-    }*/
+    }
+    */
 
     [HttpGet("{id}", Name = nameof(GetTitle))]
     public IActionResult GetTitle(string id)

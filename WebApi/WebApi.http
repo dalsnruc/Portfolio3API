@@ -46,8 +46,11 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 
 
 
-### - GET TITLES PAGED
-GET {{WebApi_HostAddress}}/api/titles?page=10&pagesize=25
+### - GET Movies PAGED
+GET {{WebApi_HostAddress}}/api/titles/movies/
+
+### - GET TVSERIES PAGED
+GET {{WebApi_HostAddress}}/api/titles/tvseries
 
 ### - GET TITLES PAGED DEFAULT PAGING
 GET {{WebApi_HostAddress}}/api/titles
@@ -159,9 +162,9 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 ### - CREATE SEARCH
 POST {{WebApi_HostAddress}}/api/searches
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg2NjIyfQ.G9nthsbJjS04yH0kRAqumjf79asikOlVKOFAUDvToOdnQMkJgNZX2mgOaMYma1Al_NNQ2iZB5nR-C_sdDiU6Xw
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWthc2giLCJleHAiOjE3MzQxMTEzNDF9.6Hcxv7T2duRkhz-sZDMxYjqimaN8w_TPd-Xuuf-KRuSr7emplH591diHalQrzaBTHj9G920uRFOtC290JLu80Q
 {
-    "content": "hej"
+    "content": "helloworld"
 }
 
 ### - DELETE SEARCH
