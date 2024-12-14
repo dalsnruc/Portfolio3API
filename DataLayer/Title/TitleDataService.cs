@@ -27,6 +27,9 @@ public class TitleDataService : ITitleDataService
             .Skip(page * pageSize)
             .Take(pageSize)
             .Include(t => t.PlotAndPoster)
+            .Include(t => t.TitleRating)
+            .Include(t => t.TitleGenre)
+            .ThenInclude(tg => tg.Genre)
             .ToList();
     }
     public IList<Title> GetTvSeries(int page, int pageSize)
@@ -38,6 +41,9 @@ public class TitleDataService : ITitleDataService
             .Skip(page * pageSize)
             .Take(pageSize)
             .Include(t => t.PlotAndPoster)
+            .Include(t => t.TitleRating)
+            .Include(t => t.TitleGenre)
+            .ThenInclude(tg => tg.Genre)
             .ToList();
     }
 

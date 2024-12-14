@@ -13,7 +13,8 @@ var userratingdataservice = new UserRatingDataService();
 
 //Console.WriteLine(namedataservice.GetName("nm0000035").KnownForTitles.FirstOrDefault().Title.PrimaryTitle);
 //Console.WriteLine(namedataservice.GetName("nm0000035").PrimaryName);
-Console.WriteLine(titledataservice.GetTitles(1, 10).FirstOrDefault().TitleGenre.FirstOrDefault().GenreId);
+Console.WriteLine(titledataservice.GetTitles(1, 10).FirstOrDefault().TitleRating.AverageRating);
+Console.WriteLine(titledataservice.GetTitle("tt0272626").TitleRating.AverageRating);
 //Console.WriteLine(genredataservice.GetAllGenres().FirstOrDefault().Name);
 
 //Console.WriteLine(bookmarknamedataservice.GetBookmarkName(1, "nm0000005").Name.PrimaryName);
