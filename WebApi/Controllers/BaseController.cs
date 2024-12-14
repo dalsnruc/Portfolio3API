@@ -25,7 +25,7 @@ public class BaseController : ControllerBase
 
     protected object CreatePaging<T>(string linkName, int page, int pageSize, int total, IEnumerable<T?> items)
     {
-        const int MaxPageSize = 25;
+        const int MaxPageSize = 20;
         pageSize = pageSize < MaxPageSize ? MaxPageSize : pageSize;
 
         var numberOfPages =
