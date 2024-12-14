@@ -26,7 +26,7 @@ public class NameController : BaseController
     }
 
     [HttpGet(Name = nameof(GetNamesPaged))]
-    public IActionResult GetNamesPaged(int page = 0, int pageSize = 10)
+    public IActionResult GetNamesPaged(int page = 0, int pageSize = 20)
     {
 
         var names = _namedataservice

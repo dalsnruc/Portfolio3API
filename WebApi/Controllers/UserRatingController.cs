@@ -29,7 +29,7 @@ public class UserRatingController : BaseController
 
     [HttpGet(Name = nameof(GetUserRatings))]
     [Authorize]
-    public IActionResult GetUserRatings(int page = 0, int pageSize = 10)
+    public IActionResult GetUserRatings(int page = 0, int pageSize = 20)
     {
         try
         {

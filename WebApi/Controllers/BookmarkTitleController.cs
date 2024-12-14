@@ -29,7 +29,7 @@ public class BookmarkTitleController : BaseController
 
     [HttpGet(Name = nameof(GetBookmarkTitles))]
     [Authorize]
-    public IActionResult GetBookmarkTitles(int page = 0, int pageSize = 2)
+    public IActionResult GetBookmarkTitles(int page = 0, int pageSize = 10)
     {
         try
         {

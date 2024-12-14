@@ -29,7 +29,7 @@ public class SearchesController : BaseController
 
     [HttpGet(Name = nameof(GetSearches))]
     [Authorize]
-    public IActionResult GetSearches(int page = 0, int pageSize = 10)
+    public IActionResult GetSearches(int page = 0, int pageSize = 20)
     {
         try
         {

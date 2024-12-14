@@ -29,7 +29,7 @@ public class TitleController : BaseController
     }
 
     [HttpGet("movies", Name = nameof(GetTitlesPaged))]
-    public IActionResult GetTitlesPaged(int page = 0, int pageSize = 10)
+    public IActionResult GetTitlesPaged(int page = 0, int pageSize = 20)
     {
         
         var titles = _titledataservice
@@ -49,7 +49,7 @@ public class TitleController : BaseController
     }
 
     [HttpGet("tvseries", Name = nameof(GetTvSeriesPaged))]
-    public IActionResult GetTvSeriesPaged(int page = 0, int pageSize = 10)
+    public IActionResult GetTvSeriesPaged(int page = 0, int pageSize = 20)
     {
 
         var titles = _titledataservice
