@@ -36,7 +36,7 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 PUT {{WebApi_HostAddress}}/api/users/login
 Content-Type: application/json
 {
-    "username": "Niclas",
+    "username": "NiclasAcc2",
     "password": "123"
 }
 
@@ -167,3 +167,7 @@ Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW
 ### - DELETE SEARCH
 DELETE {{WebApi_HostAddress}}/api/searches/10
 Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibGlha2F0IiwiZXhwIjoxNzM0MDg2NjIyfQ.G9nthsbJjS04yH0kRAqumjf79asikOlVKOFAUDvToOdnQMkJgNZX2mgOaMYma1Al_NNQ2iZB5nR-C_sdDiU6Xw
+
+### - SEARCHBAR SEARCH
+GET {{WebApi_HostAddress}}/api/searches/search?searchTerm=Tom%20Hanks
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmljbGFzQWNjMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOSIsImV4cCI6MTczNDIxOTQ5MH0.IEoXdSZDQeSj159jpGzRm09dF6UWL_y6HjlWst4aicKNvl1d7fgL08hf4NQboJMdSLUmpRC__S9FWQN3BAZd8g

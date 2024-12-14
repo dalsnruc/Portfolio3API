@@ -135,7 +135,8 @@ public class UserController : BaseController
 
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.Username)
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()) //Adds an identifier. Easier for us to get the logged_in User.
         };
 
         var secret = _configuration.GetSection("Auth:Secret").Value;
@@ -147,6 +148,7 @@ public class UserController : BaseController
             claims: claims,
             expires: DateTime.Now.AddMinutes(60),
             signingCredentials: creds
+
             );
 
         var jwt = new JwtSecurityTokenHandler().WriteToken(token);

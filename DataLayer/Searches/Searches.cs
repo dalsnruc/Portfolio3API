@@ -8,4 +8,6 @@ public class Searches
     public string Content { get; set; }
     public DateTime Date { get; set; }
 
+    public User User { get; set; }
+
 }

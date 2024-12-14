@@ -8,7 +8,12 @@ namespace DataLayer
         Searches CreateSearch(int userid, string content);
         bool DeleteSearch(int userid, int searchid);
         int NumberOfSearches(int userid);
-        void SaveSearch(int userid, string content);
+        Task SaveSearchAsync(int? userid, string content);
+
+
+        // For searchbar (Search functionality)
+        Task<IEnumerable<Title>> SearchTitlesAsync(string searchTerm, bool exactMatch);
+        Task<IEnumerable<Name>> SearchNamesAsync(string searchTerm, bool exactMatch);
 
     }
 }

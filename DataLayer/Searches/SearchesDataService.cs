@@ -84,16 +84,19 @@ namespace DataLayer
             return db.Searches.Count(bn => bn.UserId == userId);
         }
 
-        public void SaveSearch(int user_id, string content)
+        public async Task SaveSearchAsync(int? userid, string content)
         {
             try
             {
                 using var db = new imdbContext();
 
+                // If the user is not logged in, use "0".
+                int userIdValue = userid ?? 10;
+
                 //Saves to the Searches table
                 var search = new Searches
                 {
-                    UserId = user_id,
+                    UserId = userIdValue,
                     Content = content,
                     Date = DateTime.UtcNow // Converts to UTC
                 };
@@ -124,7 +127,7 @@ namespace DataLayer
                 }
 
                 //Save all changes
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -133,6 +136,50 @@ namespace DataLayer
             }
 
 
+        }
+
+        public async Task<IEnumerable<Title>> SearchTitlesAsync(string searchTerm, bool exactMatch)
+        {
+            
+                using var db = new imdbContext();
+                var query = db.Titles.AsQueryable();
+
+                if (exactMatch)
+                {
+                    // Exact match search
+                    query = query.Where(
+                        t => t.PrimaryTitle == searchTerm || t.OriginalTitle == searchTerm);
+            }
+                else 
+                { 
+                    // Fuzzy match search
+                    query = query.Where(
+                        t => EF.Functions.Like(t.PrimaryTitle, $"%{searchTerm}%") ||
+                                 EF.Functions.Like(t.OriginalTitle, $"%{searchTerm}%"));
+            }
+
+                return await query.ToListAsync();  
+        }
+
+        public async Task<IEnumerable<Name>> SearchNamesAsync(string searchTerm, bool exactMatch)
+        {
+            using var db = new imdbContext();
+            var query = db.Names.AsQueryable();
+
+            if (exactMatch)
+            {
+                // Exact match search
+                query = query.Where(
+                    n => n.PrimaryName == searchTerm);
+            }
+            else
+            {
+                // Fuzzy match search
+                query = query.Where(
+                    n => EF.Functions.Like(n.PrimaryName, $"%{searchTerm}%"));
+            }
+
+            return await query.ToListAsync();
         }
     }
 }
