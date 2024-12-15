@@ -35,6 +35,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
     );
 
+// CORS Policy to allow all origins
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", policy =>
+    {
+        policy.AllowAnyOrigin()  // Allow any origin
+              .AllowAnyMethod()  // Allow any HTTP method
+              .AllowAnyHeader(); // Allow any header
+    });
+});
+
 
 
 //TypeAdapterConfig.GlobalSettings.Default.PreserveReference(true);
