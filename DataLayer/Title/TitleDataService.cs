@@ -27,6 +27,18 @@ public class TitleDataService : ITitleDataService
         var db = new imdbContext();
 
         return db.Titles
+            .Where(t=>t.TitleType== "movie")
+            .Skip(page * pageSize)
+            .Take(pageSize)
+            .Include(t => t.PlotAndPoster)
+            .ToList();
+    }
+    public IList<Title> GetTvSeries(int page, int pageSize)
+    {
+        var db = new imdbContext();
+
+        return db.Titles
+            .Where(t => t.TitleType == "tvSeries")
             .Skip(page * pageSize)
             .Take(pageSize)
             .Include(t => t.PlotAndPoster)

@@ -15,9 +15,23 @@ namespace DataLayer
 
             return db.BookmarkTitles
                 .Where(bt => bt.UserId == userid)
+                //.Skip(page * pageSize)
+                //.Take(pageSize)
+                .Include(bt => bt.Title)
+                .ToList();
+        }
+        public IList<Title> GetTitles(int page, int pageSize)
+        {
+            var db = new imdbContext();
+
+            return db.Titles
+                .Where(t => t.TitleType == "movie")
                 .Skip(page * pageSize)
                 .Take(pageSize)
-                .Include(bt => bt.Title)
+                .Include(t => t.PlotAndPoster)
+                .Include(t => t.TitleRating)
+                .Include(t => t.TitleGenre)
+                .ThenInclude(tg => tg.Genre)
                 .ToList();
         }
 
