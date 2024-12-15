@@ -14,7 +14,6 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [Route("api/users")]
-
 public class UserController : BaseController
 {
     IUserDataService _userdataservice;
@@ -99,7 +98,7 @@ public class UserController : BaseController
     public IActionResult CreateUser(CreateUserModel model)
     {
 
-        if(_userdataservice.GetUser(model.Username)!= null)
+        if (_userdataservice.GetUser(model.Username) != null)
         {
             return BadRequest();
         }
@@ -117,25 +116,26 @@ public class UserController : BaseController
 
 
     }
-    
+
     [HttpPut("login", Name = nameof(Login))]
     public IActionResult Login(LogInUserModel model)
     {
         var user = _userdataservice.GetUser(model.Username);
 
-        if(user == null)
+        if (user == null)
         {
             return BadRequest();
         }
 
-        if(!_hashing.Verify(model.Password, user.Password, user.Salt))
+        if (!_hashing.Verify(model.Password, user.Password, user.Salt))
         {
             return BadRequest();
         }
 
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.Username)
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()) //Adds an identifier. Easier for us to get the logged_in User.
         };
 
         var secret = _configuration.GetSection("Auth:Secret").Value;
@@ -147,13 +147,14 @@ public class UserController : BaseController
             claims: claims,
             expires: DateTime.Now.AddMinutes(60),
             signingCredentials: creds
+
             );
 
         var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-        return Ok(new {username = user.Username, token = jwt});
+        return Ok(new { username = user.Username, token = jwt });
     }
-    
+
     [HttpPut("update", Name = nameof(UpdateUser))]
     [Authorize]
     public IActionResult UpdateUser(UpdateUserModel model)
@@ -194,7 +195,7 @@ public class UserController : BaseController
         }
     }
 
-    
+
 
     [HttpDelete]
     [Authorize]
@@ -214,9 +215,9 @@ public class UserController : BaseController
 
             return NotFound();
         }
-        catch 
-        { 
-            return Unauthorized(); 
+        catch
+        {
+            return Unauthorized();
         }
     }
 

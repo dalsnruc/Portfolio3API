@@ -2,7 +2,10 @@
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using WebApi.Models.NameModels;
 using WebApi.Models.SearchesModels;
+using WebApi.Models.TitleModels;
 
 namespace WebApi.Controllers;
 
@@ -29,7 +32,7 @@ public class SearchesController : BaseController
 
     [HttpGet(Name = nameof(GetSearches))]
     [Authorize]
-    public IActionResult GetSearches(int page = 0, int pageSize = 20)
+    public IActionResult GetSearches(int page = 0, int pageSize = 10)
     {
         try
         {
@@ -54,7 +57,7 @@ public class SearchesController : BaseController
         }
     }
 
-    
+
     [HttpGet("{id}", Name = nameof(GetSearch))]
     [Authorize]
     public IActionResult GetSearch(int id)
@@ -87,7 +90,7 @@ public class SearchesController : BaseController
         {
             var username = User.Identity?.Name;
             var user = _userdataservice.GetUser(username);
-            _searchesdataservice.SaveSearch(user.Id, model.Content);
+            _searchesdataservice.SaveSearchAsync(user.Id, model.Content);
 
             return Created("", new CreateSearchesModel
             {
@@ -101,7 +104,7 @@ public class SearchesController : BaseController
         }
     }
 
-    
+
 
 
     [HttpDelete("{id}")]
@@ -159,4 +162,100 @@ public class SearchesController : BaseController
                     new { page, pageSize }
                     );
     }
+
+    //Controller when a user uses the searchbar and searches for something
+    [HttpGet("search")]
+    public async Task<IActionResult> Search([FromQuery] string searchTerm, [FromQuery] bool exactMatch = false)
+    {
+
+        //Check user status:
+        var userIdClaim = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        //If the user is not logged in, the userID will be set as a null value
+        int? userId = null;
+
+        if (!string.IsNullOrEmpty(userIdClaim))
+        {
+            userId = int.Parse(userIdClaim);
+        }
+
+
+
+        //Check the searchTerm (string)
+        if (string.IsNullOrWhiteSpace(searchTerm))
+            return BadRequest("The Search cannot be empty!");
+
+        //Determine if the search is more likely a Title or a Name
+        var isTitleSearch = IsTitleSearch(searchTerm);
+        var isNameSearch = IsNameSearch(searchTerm);
+
+        //Save the "search string given", whether or not a user is logged in
+        // - and wether or not the search was succesfull 
+        await _searchesdataservice.SaveSearchAsync(userId, searchTerm);
+
+        if (isTitleSearch && isNameSearch)
+        {
+            //If the search matches both, the return both
+            var titleResults = await _searchesdataservice.SearchTitlesAsync(searchTerm, exactMatch);
+            var nameResults = await _searchesdataservice.SearchNamesAsync(searchTerm, exactMatch);
+            return Ok(new { Titles = titleResults, Names = nameResults });
+        }
+        else if (isTitleSearch)
+        {
+            var titleResults = await _searchesdataservice.SearchTitlesAsync(searchTerm, exactMatch);
+            return Ok(titleResults.Select(t => new TitleModel
+            {
+                // We might need url her?!
+                TitleType = t.TitleType,
+                PrimaryTitle = t.PrimaryTitle,
+                OriginalTitle = t.OriginalTitle,
+                IsAdult = t.IsAdult,
+                StartYear = t.StartYear,
+                /*
+                PlotAndPoster = t.PlotAndPoster,
+                TitleRating = t.TitleRating,
+                TitleGenre = t.TitleGenre,
+                */
+
+            }));
+        }
+        else if (isNameSearch)
+        {
+            var nameResults = await _searchesdataservice.SearchNamesAsync(searchTerm, exactMatch);
+            return Ok(nameResults.Select(n => new NameModel
+            {
+                // We might need url her?!
+                NameId = n.NameId,
+                PrimaryName = n.PrimaryName,
+                BirthYear = n.BirthYear,
+                DeathYear = n.DeathYear,
+
+                AverageRating = n.AverageRating,
+                /*
+                KnownForTitles = n.KnownForTitles,
+                NameProfession = n.NameProfession,
+                */
+            }));
+        }
+        else
+        {
+            return NotFound("Could not find what you were looking for.");
+        }
+
+    }
+
+    // Helper method to determine wether searh term is more like a title or name
+    private bool IsTitleSearch(string searchTerm)
+    {
+        //If the search contains spaces (more than one word) it is most likely to be a movie or a tv-show
+        return !searchTerm.Contains(" ");
+    }
+
+    private bool IsNameSearch(string searchTerm)
+    {
+        //If the search does NOT contain spaces (only 1 word) it is most likely a name of an actor or director
+        return searchTerm.Contains(" ");
+    }
+
+
 }
