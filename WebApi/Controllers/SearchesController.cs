@@ -131,38 +131,6 @@ public class SearchesController : BaseController
         }
     }
 
-
-
-    private SearchesModel? CreateSearchesModel(Searches? searches)
-    {
-        if (searches == null)
-        {
-            return null;
-        }
-
-        var model = searches.Adapt<SearchesModel>();
-        model.Url = GetUrl(searches.SearchId);
-
-        return model;
-    }
-
-
-    private string? GetUrl(int id)
-    {
-        return _linkGenerator.GetUriByName(
-            HttpContext,
-            nameof(GetSearches), new { id });
-    }
-
-    private string? GetLink(string linkName, int page, int pageSize)
-    {
-        return _linkGenerator.GetUriByName(
-                    HttpContext,
-                    linkName,
-                    new { page, pageSize }
-                    );
-    }
-
     //Controller when a user uses the searchbar and searches for something
     [HttpGet("search")]
     public async Task<IActionResult> Search([FromQuery] string searchTerm, [FromQuery] bool exactMatch = false)
@@ -178,8 +146,6 @@ public class SearchesController : BaseController
         {
             userId = int.Parse(userIdClaim);
         }
-
-
 
         //Check the searchTerm (string)
         if (string.IsNullOrWhiteSpace(searchTerm))
@@ -255,6 +221,36 @@ public class SearchesController : BaseController
     {
         //If the search does NOT contain spaces (only 1 word) it is most likely a name of an actor or director
         return searchTerm.Contains(" ");
+    }
+
+    private SearchesModel? CreateSearchesModel(Searches? searches)
+    {
+        if (searches == null)
+        {
+            return null;
+        }
+
+        var model = searches.Adapt<SearchesModel>();
+        model.Url = GetUrl(searches.SearchId);
+
+        return model;
+    }
+
+
+    private string? GetUrl(int id)
+    {
+        return _linkGenerator.GetUriByName(
+            HttpContext,
+            nameof(GetSearches), new { id });
+    }
+
+    private string? GetLink(string linkName, int page, int pageSize)
+    {
+        return _linkGenerator.GetUriByName(
+                    HttpContext,
+                    linkName,
+                    new { page, pageSize }
+                    );
     }
 
 

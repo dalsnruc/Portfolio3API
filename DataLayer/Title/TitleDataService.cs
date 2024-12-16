@@ -7,43 +7,60 @@ public class TitleDataService : ITitleDataService
 {
 
 
-    /*public IList<Title> GetAllMovies()
+    public IList<Title> GetTitles(int page, int pageSize, string? genre = null, double? minRating = null)
     {
         var db = new imdbContext();
 
-        return db.Titles
+        var query = db.Titles
             .Where(t => t.TitleType == "movie")
-            .ToList();
-    }
-    */
-
-
-    public IList<Title> GetTitles(int page, int pageSize)
-    {
-        var db = new imdbContext();
-
-        return db.Titles
-            .Where(t => t.TitleType == "movie")
-            .Skip(page * pageSize)
-            .Take(pageSize)
             .Include(t => t.PlotAndPoster)
             .Include(t => t.TitleRating)
             .Include(t => t.TitleGenre)
             .ThenInclude(tg => tg.Genre)
+            .AsQueryable();
+
+        if (!string.IsNullOrEmpty(genre))
+        {
+            query = query.Where(t => t.TitleGenre.Any(tg => tg.Genre.Name == genre));
+        }
+
+        if (minRating.HasValue)
+        {
+            query = query.Where(t => t.TitleRating != null && t.TitleRating.AverageRating >= minRating.Value);
+        }
+
+        return query
+            .Skip(page * pageSize)
+            .Take(pageSize)
             .ToList();
     }
-    public IList<Title> GetTvSeries(int page, int pageSize)
+
+    public IList<Title> GetTvSeries(int page, int pageSize, string? genre = null, double? minRating = null)
     {
         var db = new imdbContext();
 
-        return db.Titles
+        var query = db.Titles
             .Where(t => t.TitleType == "tvSeries")
-            .Skip(page * pageSize)
-            .Take(pageSize)
             .Include(t => t.PlotAndPoster)
             .Include(t => t.TitleRating)
             .Include(t => t.TitleGenre)
             .ThenInclude(tg => tg.Genre)
+            .AsQueryable();
+
+       
+        if (!string.IsNullOrEmpty(genre))
+        {
+            query = query.Where(t => t.TitleGenre.Any(tg => tg.Genre.Name == genre));
+        }
+
+        if (minRating.HasValue)
+        {
+            query = query.Where(t => t.TitleRating != null && t.TitleRating.AverageRating >= minRating.Value);
+        }
+
+        return query
+            .Skip(page * pageSize)
+            .Take(pageSize)
             .ToList();
     }
 

@@ -111,7 +111,6 @@ public class UserController : BaseController
         (var hashedPwd, var salt) = _hashing.Hash(model.Password);
 
         var user = _userdataservice.CreateUser(model.Username, hashedPwd, model.Email, model.Birthday, model.Phonenumber, salt);
-        //return CreatedAtRoute(nameof(GetUser), new { id = user.Id }, CreateUserModel(user));
         return Ok();
 
 
