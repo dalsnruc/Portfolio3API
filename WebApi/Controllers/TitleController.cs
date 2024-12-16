@@ -66,6 +66,30 @@ public class TitleController : BaseController
         return Ok(result);
     }
 
+    [HttpGet("top-rated-movies", Name = nameof(GetTopRatedMovies))]
+    public IActionResult GetTopRatedMovies(int minVotes = 1000)
+    {
+        
+        var movies = _titledataservice
+            .GetTopRatedMovies(0, 10, minVotes) 
+            .Select(CreateTitleModel); 
+
+        return Ok(movies); 
+    }
+
+    [HttpGet("top-rated-tvseries", Name = nameof(GetTopRatedTvSeries))]
+    public IActionResult GetTopRatedTvSeries(int minVotes = 1000)
+    {
+
+        var movies = _titledataservice
+            .GetTopRatedTvSeries(0, 10, minVotes)
+            .Select(CreateTitleModel);
+
+        return Ok(movies);
+    }
+
+
+
 
     /*
     [HttpGet]

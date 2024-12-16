@@ -64,6 +64,39 @@ public class TitleDataService : ITitleDataService
             .ToList();
     }
 
+    public IList<Title> GetTopRatedMovies(int page, int pageSize, int minVotes)
+    {
+        using var db = new imdbContext();
+
+        return db.Titles
+            .Where(t => t.TitleType == "movie" && t.TitleRating.NumVotes > minVotes) 
+            .OrderByDescending(t => t.TitleRating.AverageRating) 
+            .Skip(page * pageSize) 
+            .Take(pageSize) 
+            .Include(t => t.PlotAndPoster) 
+            .Include(t => t.TitleRating)
+            .Include(t => t.TitleGenre)
+                .ThenInclude(tg => tg.Genre)
+            .ToList();
+    }
+
+    public IList<Title> GetTopRatedTvSeries(int page, int pageSize, int minVotes)
+    {
+        using var db = new imdbContext();
+
+        return db.Titles
+            .Where(t => t.TitleType == "tvSeries" && t.TitleRating.NumVotes > minVotes)
+            .OrderByDescending(t => t.TitleRating.AverageRating)
+            .Skip(page * pageSize)
+            .Take(pageSize)
+            .Include(t => t.PlotAndPoster)
+            .Include(t => t.TitleRating)
+            .Include(t => t.TitleGenre)
+                .ThenInclude(tg => tg.Genre)
+            .ToList();
+    }
+
+
 
     public Title? GetTitle(string id)
     {

@@ -8,6 +8,9 @@ public interface ITitleDataService
 
     IList<Title> GetTvSeries(int page, int pageSize, string? genre = null, double? minRating = null);
 
+    IList<Title> GetTopRatedMovies(int page, int pageSize, int minVotes);
+    IList<Title> GetTopRatedTvSeries(int page, int pageSize, int minVotes);
+
     Title? GetTitle(string id);
 
     //Title CreateTitle(int userid, string primarytitle, string originaltitle, bool isadult, string startyear);
