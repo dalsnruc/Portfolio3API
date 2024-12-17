@@ -31,7 +31,7 @@ public class TitleDataService : ITitleDataService
 
         if (!string.IsNullOrEmpty(primaryTitle))
         {
-            query = query.Where(t => EF.Functions.Like(t.PrimaryTitle, $"%{primaryTitle}%"));
+            query = query.Where(t => t.PrimaryTitle.ToLower().Contains(primaryTitle.ToLower()));
         }
 
 
@@ -66,9 +66,8 @@ public class TitleDataService : ITitleDataService
 
         if (!string.IsNullOrEmpty(primaryTitle))
         {
-            query = query.Where(t => EF.Functions.Like(t.PrimaryTitle, $"%{primaryTitle}%"));
+            query = query.Where(t => t.PrimaryTitle.ToLower().Contains(primaryTitle.ToLower()));
         }
-
         return query
             .Skip(page * pageSize)
             .Take(pageSize)
