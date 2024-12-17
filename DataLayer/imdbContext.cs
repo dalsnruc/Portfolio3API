@@ -23,8 +23,10 @@ internal class imdbContext : DbContext
     // Configures the database connection and logging for this DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+
         optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
-        optionsBuilder.UseNpgsql("host=cit.ruc.dk;db=cit09;uid=cit09;pwd=laqG12o0x9vP");
+        //REMEMBER TO INSERT PASSWORD
+        optionsBuilder.UseNpgsql("host=cit.ruc.dk;db=cit09;uid=cit09;pwd=");
     }
 
     
