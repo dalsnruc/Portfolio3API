@@ -26,11 +26,11 @@ public class NameController : BaseController
     }
 
     [HttpGet(Name = nameof(GetNamesPaged))]
-    public IActionResult GetNamesPaged(int page = 0, int pageSize = 20)
+    public IActionResult GetNamesPaged(int page = 0, int pageSize = 20, string? primaryName = null)
     {
 
         var names = _namedataservice
-        .GetNames(page, pageSize)
+        .GetNames(page, pageSize, primaryName)
         .Select(CreateAllNamesModel);
         var numberOfItems = _namedataservice.NumberOfNames();
         object result = CreatePaging(
@@ -58,6 +58,21 @@ public class NameController : BaseController
 
         return Ok(model);
 
+    }
+
+    // Get Name by PrimaryName
+    [HttpGet("name/{primaryName}", Name = nameof(GetNameByPrimaryName))]
+    public IActionResult GetNameByPrimaryName(string primaryName)
+    {
+        var name = _namedataservice.GetNameByPrimaryName(primaryName);
+
+        if (name == null)
+        {
+            return NotFound();
+        }
+
+        var model = CreateNameModel(name);
+        return Ok(model);
     }
 
 

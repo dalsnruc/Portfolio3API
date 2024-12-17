@@ -29,11 +29,11 @@ public class TitleController : BaseController
     }
 
     [HttpGet("movies", Name = nameof(GetTitlesPaged))]
-    public IActionResult GetTitlesPaged(int page = 0, int pageSize = 20)
+    public IActionResult GetTitlesPaged(int page = 0, int pageSize = 20, string? genre = null, double? minRating = null, string? primaryTitle = null)
     {
-        
+
         var titles = _titledataservice
-            .GetTitles(page, pageSize)
+            .GetTitles(page, pageSize, genre, minRating, primaryTitle)
             .Select(CreateAllTitlesModel);
 
         var numberOfItems = _titledataservice.NumberOfTitles();
@@ -44,16 +44,15 @@ public class TitleController : BaseController
             numberOfItems,
             titles);
         return Ok(result);
-        
+
 
     }
 
     [HttpGet("tvseries", Name = nameof(GetTvSeriesPaged))]
-    public IActionResult GetTvSeriesPaged(int page = 0, int pageSize = 20)
+    public IActionResult GetTvSeriesPaged(int page = 0, int pageSize = 20, string? genre = null, double? minRating = null, string? primaryTitle = null)
     {
-
         var titles = _titledataservice
-            .GetTvSeries(page, pageSize)
+            .GetTvSeries(page, pageSize, genre, minRating, primaryTitle)
             .Select(CreateAllTitlesModel);
 
         var numberOfItems = _titledataservice.NumberOfTitles();
@@ -63,9 +62,22 @@ public class TitleController : BaseController
             pageSize,
             numberOfItems,
             titles);
+
         return Ok(result);
+    }
 
 
+
+
+    [HttpGet("top-rated-movies", Name = nameof(GetTopRatedMovies))]
+    public IActionResult GetTopRatedMovies(int minVotes = 1000)
+    {
+
+        var movies = _titledataservice
+            .GetTopRatedMovies(0, 10, minVotes)
+            .Select(CreateTitleModel);
+
+        return Ok(movies);
     }
 
     /*
@@ -93,6 +105,16 @@ public class TitleController : BaseController
 
         return Ok(model);
 
+    }
+    [HttpGet("top-rated-tvseries", Name = nameof(GetTopRatedTvSeries))]
+    public IActionResult GetTopRatedTvSeries(int minVotes = 1000)
+    {
+
+        var movies = _titledataservice
+            .GetTopRatedTvSeries(0, 10, minVotes)
+            .Select(CreateTitleModel);
+
+        return Ok(movies);
     }
 
     /*

@@ -24,16 +24,36 @@ namespace DataLayer
         }
         */
 
-        public IList<Name> GetNames(int page, int pageSize)
+        public IList<Name> GetNames(int page, int pageSize, string? primaryName = null)
         {
             var db = new imdbContext();
 
-            return db.Names
+            var query = db.Names.AsQueryable();
+
+            if (!string.IsNullOrEmpty(primaryName))
+            {
+                query = query.Where(n => n.PrimaryName.ToLower().Contains(primaryName.ToLower()));
+            }
+
+            return query
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 .ToList();
         }
 
+        //testc 
+        public Name? GetNameByPrimaryName(string primaryName)
+        {
+            var db = new imdbContext();
+            return db.Names
+                .Include(n => n.KnownForTitles)
+                .ThenInclude(kft => kft.Title)
+                .Include(n => n.NameProfession)
+                .ThenInclude(np => np.Profession)
+                .FirstOrDefault(n => n.PrimaryName.ToLower() == primaryName.ToLower());
+        }
+
+        //end test
         /*
 
         public Name CreateName(int userid, string primaryname, string birthyear, string deathyear)

@@ -18,34 +18,103 @@ public class TitleDataService : ITitleDataService
     */
 
 
-    public IList<Title> GetTitles(int page, int pageSize)
+    public IList<Title> GetTitles(int page, int pageSize, string? genre = null, double? minRating = null, string? primaryTitle = null)
     {
         var db = new imdbContext();
 
-        return db.Titles
+        var query = db.Titles
             .Where(t => t.TitleType == "movie")
-            .Skip(page * pageSize)
-            .Take(pageSize)
             .Include(t => t.PlotAndPoster)
             .Include(t => t.TitleRating)
             .Include(t => t.TitleGenre)
             .ThenInclude(tg => tg.Genre)
+            .AsQueryable();
+
+        if (!string.IsNullOrEmpty(genre))
+        {
+            query = query.Where(t => t.TitleGenre.Any(tg => tg.Genre.Name == genre));
+        }
+
+        if (minRating.HasValue)
+        {
+            query = query.Where(t => t.TitleRating != null && t.TitleRating.AverageRating >= minRating.Value);
+        }
+        if (!string.IsNullOrEmpty(primaryTitle))
+        {
+            query = query.Where(t => t.PrimaryTitle.ToLower().Contains(primaryTitle.ToLower()));
+        }
+
+        return query
+            .Skip(page * pageSize)
+            .Take(pageSize)
             .ToList();
     }
-    public IList<Title> GetTvSeries(int page, int pageSize)
+
+
+    public IList<Title> GetTvSeries(int page, int pageSize, string? genre = null, double? minRating = null, string? primaryTitle = null)
     {
         var db = new imdbContext();
 
-        return db.Titles
+        var query = db.Titles
             .Where(t => t.TitleType == "tvSeries")
+            .Include(t => t.PlotAndPoster)
+            .Include(t => t.TitleRating)
+            .Include(t => t.TitleGenre)
+            .ThenInclude(tg => tg.Genre)
+            .AsQueryable();
+
+        if (!string.IsNullOrEmpty(genre))
+        {
+            query = query.Where(t => t.TitleGenre.Any(tg => tg.Genre.Name == genre));
+        }
+
+        if (minRating.HasValue)
+        {
+            query = query.Where(t => t.TitleRating != null && t.TitleRating.AverageRating >= minRating.Value);
+        }
+
+        if (!string.IsNullOrEmpty(primaryTitle))
+        {
+            query = query.Where(t => t.PrimaryTitle.ToLower().Contains(primaryTitle.ToLower()));
+        }
+
+        return query
+            .Skip(page * pageSize)
+            .Take(pageSize)
+            .ToList();
+    }
+
+    public IList<Title> GetTopRatedMovies(int page, int pageSize, int minVotes)
+    {
+        using var db = new imdbContext();
+
+        return db.Titles
+            .Where(t => t.TitleType == "movie" && t.TitleRating.NumVotes > minVotes)
+            .OrderByDescending(t => t.TitleRating.AverageRating)
             .Skip(page * pageSize)
             .Take(pageSize)
             .Include(t => t.PlotAndPoster)
             .Include(t => t.TitleRating)
             .Include(t => t.TitleGenre)
-            .ThenInclude(tg => tg.Genre)
+                .ThenInclude(tg => tg.Genre)
             .ToList();
     }
+    public IList<Title> GetTopRatedTvSeries(int page, int pageSize, int minVotes)
+    {
+        using var db = new imdbContext();
+
+        return db.Titles
+            .Where(t => t.TitleType == "tvSeries" && t.TitleRating.NumVotes > minVotes)
+            .OrderByDescending(t => t.TitleRating.AverageRating)
+            .Skip(page * pageSize)
+            .Take(pageSize)
+            .Include(t => t.PlotAndPoster)
+            .Include(t => t.TitleRating)
+            .Include(t => t.TitleGenre)
+                .ThenInclude(tg => tg.Genre)
+            .ToList();
+    }
+
 
 
     public Title? GetTitle(string id)

@@ -145,7 +145,7 @@ public class UserController : BaseController
 
         var token = new JwtSecurityToken(
             claims: claims,
-            expires: DateTime.Now.AddMinutes(60),
+            expires: DateTime.Now.AddMinutes(120),
             signingCredentials: creds
 
             );
