@@ -13,8 +13,8 @@ var userratingdataservice = new UserRatingDataService();
 
 //Console.WriteLine(namedataservice.GetName("nm0000035").KnownForTitles.FirstOrDefault().Title.PrimaryTitle);
 //Console.WriteLine(namedataservice.GetName("nm0000035").PrimaryName);
-Console.WriteLine(titledataservice.GetTitles(1, 10).FirstOrDefault().TitleRating.AverageRating);
-Console.WriteLine(titledataservice.GetTitle("tt0272626").TitleRating.AverageRating);
+//Console.WriteLine(titledataservice.GetTitles(1, 10).FirstOrDefault().TitleRating.AverageRating);
+//Console.WriteLine(titledataservice.GetTitle("tt0272626").TitleRating.AverageRating);
 //Console.WriteLine(genredataservice.GetAllGenres().FirstOrDefault().Name);
 
 //Console.WriteLine(bookmarknamedataservice.GetBookmarkName(1, "nm0000005").Name.PrimaryName);
@@ -40,43 +40,7 @@ Console.WriteLine(titledataservice.GetTitle("tt0272626").TitleRating.AverageRati
 //Console.WriteLine(userdataservice.CreateUser("FirstWithSalt", "pwd", "salt@gmail.com", new DateTime(1995, 5, 15), "12345678", "123"));
 //Console.WriteLine(userdataservice.UpdateUser("TESTER", "nymail@gmail.com", new DateTime(1995, 5, 15), "12345678"));
 
-/*
-int testUserId = 1; // Replace with a valid user id
-UserRating testRating = new UserRating
-{
-    UserId = testUserId,
-    TitleId = "tt0104988",
-    Rating = 5,
-    Date = DateTime.UtcNow,
-};
 
-bool result = userratingdataservice.UpdateUserRating(testUserId, testRating);
-Console.WriteLine(result);
-*/
-/*
-string testUsername = "TEST4";
-string testPassword = "newPassword";
-string testEmail = "testuser@example.com";
-DateTime testBirthday = new DateTime(1995, 5, 15); // Replace with desired birthday
-string testPhonenumber = "1234567890";
-
-// Create an instance of your service or class containing the UpdateUser method
-
-
-// Call the UpdateUser method
-bool result = userdataservice.UpdateUser(
-    testUsername,
-    testPassword,
-    testEmail,
-    testBirthday,
-    testPhonenumber
-);
-
-// Output the result
-Console.WriteLine($"Update result: {result}");
-
-
-*/
 
 
 static void PrintUsers(IUserDataService userdataService)
@@ -88,34 +52,3 @@ static void PrintUsers(IUserDataService userdataService)
 
 }
 
-static void PrintAllProperties(object obj)
-{
-    if (obj == null)
-    {
-        Console.WriteLine("Object is null.");
-        return;
-    }
-
-    Type type = obj.GetType();
-    Console.WriteLine($"Properties of {type.Name}:");
-
-    foreach (PropertyInfo property in type.GetProperties())
-    {
-        object value = property.GetValue(obj);
-
-        if (value is IEnumerable enumerable && !(value is string))
-        {
-            Console.WriteLine($"{property.Name}: Collection");
-
-            foreach (var item in enumerable)
-            {
-                Console.WriteLine($" - Item in {property.Name}:");
-                PrintAllProperties(item); // Recursively print each item
-            }
-        }
-        else
-        {
-            Console.WriteLine($"{property.Name}: {value}");
-        }
-    }
-}
