@@ -60,6 +60,20 @@ public class NameController : BaseController
 
     }
 
+    [HttpGet("name/{primaryName}", Name = nameof(GetNameByPrimaryName))]
+    public IActionResult GetNameByPrimaryName(string primaryName)
+    {
+        var name = _namedataservice.GetNameByPrimaryName(primaryName);
+
+        if (name == null)
+        {
+            return NotFound();
+        }
+
+        var model = CreateNameModel(name);
+        return Ok(model);
+    }
+
 
     private NameModel? CreateNameModel(Name? name)
     {

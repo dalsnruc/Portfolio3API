@@ -41,6 +41,17 @@ namespace DataLayer
                 .ToList();
         }
 
+        public Name? GetNameByPrimaryName(string primaryName)
+        {
+            var db = new imdbContext();
+            return db.Names
+                .Include(n => n.KnownForTitles)
+                .ThenInclude(kft => kft.Title)
+                .Include(n => n.NameProfession)
+                .ThenInclude(np => np.Profession)
+                .FirstOrDefault(n => n.PrimaryName.ToLower() == primaryName.ToLower());
+        }
+
 
         /*
 

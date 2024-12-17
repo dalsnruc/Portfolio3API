@@ -24,7 +24,7 @@ internal class imdbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
-        optionsBuilder.UseNpgsql("host=localhost;db=database;uid=postgres;pwd=postgres");
+        optionsBuilder.UseNpgsql("host=cit.ruc.dk;db=cit09;uid=cit09;pwd=laqG12o0x9vP");
     }
 
     

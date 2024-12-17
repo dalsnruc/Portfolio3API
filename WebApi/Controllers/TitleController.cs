@@ -67,7 +67,7 @@ public class TitleController : BaseController
     }
 
     [HttpGet("top-rated-movies", Name = nameof(GetTopRatedMovies))]
-    public IActionResult GetTopRatedMovies(int minVotes = 1000)
+    public IActionResult GetTopRatedMovies(int minVotes = 100000)
     {
         
         var movies = _titledataservice
@@ -78,7 +78,7 @@ public class TitleController : BaseController
     }
 
     [HttpGet("top-rated-tvseries", Name = nameof(GetTopRatedTvSeries))]
-    public IActionResult GetTopRatedTvSeries(int minVotes = 1000)
+    public IActionResult GetTopRatedTvSeries(int minVotes = 100000)
     {
 
         var movies = _titledataservice
