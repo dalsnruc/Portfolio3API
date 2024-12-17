@@ -29,11 +29,11 @@ public class TitleController : BaseController
     }
 
     [HttpGet("movies", Name = nameof(GetTitlesPaged))]
-    public IActionResult GetTitlesPaged(int page = 0, int pageSize = 20, string? genre = null, double? minRating = null)
+    public IActionResult GetTitlesPaged(int page = 0, int pageSize = 20, string? genre = null, double? minRating = null, string? primaryTitle = null)
     {
         
         var titles = _titledataservice
-            .GetTitles(page, pageSize, genre, minRating)
+            .GetTitles(page, pageSize, genre, minRating, primaryTitle)
             .Select(CreateAllTitlesModel);
 
         var numberOfItems = _titledataservice.NumberOfTitles();
@@ -49,10 +49,10 @@ public class TitleController : BaseController
     }
 
     [HttpGet("tvseries", Name = nameof(GetTvSeriesPaged))]
-    public IActionResult GetTvSeriesPaged(int page = 0, int pageSize = 20, string? genre = null, double? minRating = null)
+    public IActionResult GetTvSeriesPaged(int page = 0, int pageSize = 20, string? genre = null, double? minRating = null, string? primaryTitle = null)
     {
         var titles = _titledataservice
-            .GetTvSeries(page, pageSize, genre, minRating)
+            .GetTvSeries(page, pageSize, genre, minRating, primaryTitle)
             .Select(CreateAllTitlesModel);
 
         var numberOfItems = _titledataservice.NumberOfTitles();

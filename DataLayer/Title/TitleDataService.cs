@@ -7,7 +7,7 @@ public class TitleDataService : ITitleDataService
 {
 
 
-    public IList<Title> GetTitles(int page, int pageSize, string? genre = null, double? minRating = null)
+    public IList<Title> GetTitles(int page, int pageSize, string? genre = null, double? minRating = null, string? primaryTitle = null)
     {
         var db = new imdbContext();
 
@@ -29,13 +29,20 @@ public class TitleDataService : ITitleDataService
             query = query.Where(t => t.TitleRating != null && t.TitleRating.AverageRating >= minRating.Value);
         }
 
+        if (!string.IsNullOrEmpty(primaryTitle))
+        {
+            query = query.Where(t => EF.Functions.Like(t.PrimaryTitle, $"%{primaryTitle}%"));
+        }
+
+
         return query
             .Skip(page * pageSize)
             .Take(pageSize)
             .ToList();
     }
 
-    public IList<Title> GetTvSeries(int page, int pageSize, string? genre = null, double? minRating = null)
+
+    public IList<Title> GetTvSeries(int page, int pageSize, string? genre = null, double? minRating = null, string? primaryTitle = null)
     {
         var db = new imdbContext();
 
@@ -47,7 +54,6 @@ public class TitleDataService : ITitleDataService
             .ThenInclude(tg => tg.Genre)
             .AsQueryable();
 
-       
         if (!string.IsNullOrEmpty(genre))
         {
             query = query.Where(t => t.TitleGenre.Any(tg => tg.Genre.Name == genre));
@@ -58,11 +64,17 @@ public class TitleDataService : ITitleDataService
             query = query.Where(t => t.TitleRating != null && t.TitleRating.AverageRating >= minRating.Value);
         }
 
+        if (!string.IsNullOrEmpty(primaryTitle))
+        {
+            query = query.Where(t => EF.Functions.Like(t.PrimaryTitle, $"%{primaryTitle}%"));
+        }
+
         return query
             .Skip(page * pageSize)
             .Take(pageSize)
             .ToList();
     }
+
 
     public IList<Title> GetTopRatedMovies(int page, int pageSize, int minVotes)
     {
